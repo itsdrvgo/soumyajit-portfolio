@@ -1,34 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# **Next.JS 13 Template**
 
-## Getting Started
+This template include the following features,
+* **Database Management** with [`Drizzle ORM`](https://orm.drizzle.team/) and [`Planelscale`](https://planetscale.com/).
+* **Data Caching** with [`ioredis`](https://github.com/redis/ioredis) and [`Upstash`](https://upstash.com/).
+* **UI Library Management** with [`ShadCN UI`](https://ui.shadcn.com/).
+* **Environment Management** with [`T3 ENV`](https://env.t3.gg/docs/introduction).
+* **Icon Management** with [`Lucide`](https://lucide.dev/).
+* **CSS Management** with [`Tailwind CSS`](https://tailwindcss.com/).
+* **Package Manager** as [`pnpm`](https://pnpm.io/).
 
-First, run the development server:
+## **Message from the Creator**
+---
+Hey, **DRVGO** here. All the needed documentations are hyper-linked with the package names. I myself current am using this stack, although for authentication, I'm kinda in a middle of choosing between [`Clerk`](https://clerk.com/) & [`Auth.JS`](https://authjs.dev/).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+The only reason, I'm currently not using `Auth.JS` in this template is, it's still in experimental stage and all the feature have not been implemented and tested. Also, a `Drizzle Adapter` for `next-auth` is still on the way. So, we need to wait until `Auth.JS` officially releases it.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## **How to Run the Application**
+---
+1. Clone the project in your local system.
+2. Open the terminal and install using `pnpm i` (if you're using npm, you might wanna migrate the package manager).
+3. Once all the packages are installed, run `pnpm dev` (if you're on development mode). To make a production build, first use `pnpm build`, and then `pnpm start`.
+4. The application will be hosted locally on `http://localhost:3000`.
+5. To install UI components, make sure you read the [guide](https://ui.shadcn.com/).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## **TODOS**
+---
+* Add authenticaton with `Clerk` or `Auth.JS`.
+* Adding API routes for examples with simple requests.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## **SOCIALS**
+---
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[![Discord](https://img.shields.io/badge/Discord-%237289DA.svg?logo=discord&logoColor=white)](https://dsc.gg/drvgo) [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/itsdrvgo) [![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?logo=Twitter&logoColor=white)](https://twitter.com/itsdrvgo) [![YouTube](https://img.shields.io/badge/YouTube-%23FF0000.svg?logo=YouTube&logoColor=white)](https://youtube.com/@itsdrvgo) 
