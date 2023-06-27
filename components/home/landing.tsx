@@ -103,6 +103,7 @@ function Landing({ className }: HTMLAttributes<HTMLElement>) {
                             src={SoumyajitMainPicture}
                             height={500}
                             width={500}
+                            priority
                         />
                     </motion.div>
                 </motion.div>
