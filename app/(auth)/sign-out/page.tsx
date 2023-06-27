@@ -1,5 +1,11 @@
 import { Header } from "@/components/auth/header";
 import { LogOutButtons } from "@/components/auth/logout-buttons";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Sign Out",
+    description: "Sign out from Soumyajit's official website"
+};
 
 export const runtime = "edge";
 

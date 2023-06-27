@@ -4,6 +4,11 @@ import { SiteFooter } from "@/components/global/site-footer";
 import { ReactNode } from "react";
 import Auth from "@/components/global/auth";
 import "./page.css";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Home"
+};
 
 function Layout({ children }: { children: ReactNode }) {
     return (

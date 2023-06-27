@@ -4,6 +4,12 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import Image from "next/image";
 import Link from "next/link";
 import SoumyajitMainPicture from "@/public/soumyajit_01_main.jpg";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Sign In",
+    description: "Sign in to Souyamjit Chakraborty's official website"
+};
 
 function Page() {
     return (

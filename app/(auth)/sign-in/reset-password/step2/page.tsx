@@ -6,7 +6,7 @@ import { ResetPasswordStep2Form } from "@/components/forms/reset-password-form-s
 
 export const metadata: Metadata = {
     title: "Reset Password",
-    description: "Enter your email to reset your password",
+    description: "Enter your email to reset your password"
 };
 
 function ResetPasswordStep2Page() {

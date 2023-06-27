@@ -8,6 +8,12 @@ import { db } from "@/lib/drizzle";
 import { eq } from "drizzle-orm";
 import { users } from "@/lib/drizzle/schema";
 import Auth from "@/components/global/auth";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Blog",
+    description: "Read all the latest blogs by Souyamjit"
+};
 
 async function Layout({ children }: { children: ReactNode }) {
     const user = await currentUser();

@@ -10,6 +10,12 @@ import { users } from "@/lib/drizzle/schema";
 import { Header } from "@/components/auth/header";
 import { GoBackButton } from "@/components/global/go-back-button";
 import Auth from "@/components/global/auth";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Admin Panel",
+    description: "Take administrative actions"
+};
 
 async function Layout({ children }: { children: ReactNode }) {
     const user = await currentUser();

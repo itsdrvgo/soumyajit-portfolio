@@ -4,6 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import SoumyajitMainPicture from "@/public/soumyajit_01_main.jpg";
 import { SignUpForm } from "@/components/forms/sign-up-form";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Sign Up",
+    description: "Don't have account? Create one now on Soumyajit's website"
+};
 
 function Page() {
     return (

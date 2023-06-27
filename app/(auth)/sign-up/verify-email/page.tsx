@@ -6,7 +6,7 @@ import { VerifyEmailForm } from "@/components/forms/verify-email";
 
 export const metadata: Metadata = {
     title: "Verify Email",
-    description: "Verify your email address to continue with your sign up",
+    description: "Verify your email address to continue with your sign up"
 };
 
 function VerifyEmailPage() {

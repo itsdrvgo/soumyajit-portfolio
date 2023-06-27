@@ -1,6 +1,12 @@
 import UserPage from "@/components/admin/users/users-page";
 import UserTableSkeleton from "@/components/skeletons/users-table-skeleton";
 import { Suspense } from "react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Users Panel",
+    description: "Manager users connected to the site"
+};
 
 function Page() {
     return (
