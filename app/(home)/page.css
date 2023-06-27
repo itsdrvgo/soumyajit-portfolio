@@ -1,0 +1,69 @@
+.monitor:after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 3%;
+    left: 36%;
+    height: .5%;
+    width: 28%;
+    background: #ddd;
+    border-radius: 50%;
+    box-shadow: 0 0 3px 0 white;
+}
+
+.song_tab {
+    transition: all ease-in-out 200ms;
+}
+
+.song_tab:hover {
+    box-shadow: 0 0 100px 0 rgba(201, 138, 243, 0.4);
+}
+
+@media all and (min-width: 960px) {
+    .monitor {
+        -webkit-animation: tvflicker .2s infinite alternate;
+        -moz-animation: tvflicker .5s infinite alternate;
+        -o-animation: tvflicker .5s infinite alternate;
+        animation: tvflicker .5s infinite alternate;
+    }
+
+    @-webkit-keyframes tvflicker {
+        0% {
+            box-shadow: 0 0 100px 0 rgba(201, 138, 243, 0.4);
+        }
+
+        100% {
+            box-shadow: 0 0 95px 0 rgba(201, 138, 243, 0.45);
+        }
+    }
+
+    @-moz-keyframes tvflicker {
+        0% {
+            box-shadow: 0 0 100px 0 rgba(201, 138, 243, 0.4);
+        }
+
+        100% {
+            box-shadow: 0 0 60px 0 rgba(201, 138, 243, 0.6);
+        }
+    }
+
+    @-o-keyframes tvflicker {
+        0% {
+            box-shadow: 0 0 100px 0 rgba(201, 138, 243, 0.4);
+        }
+
+        100% {
+            box-shadow: 0 0 60px 0 rgba(201, 138, 243, 0.6);
+        }
+    }
+
+    @keyframes tvflicker {
+        0% {
+            box-shadow: 0 0 100px 0 rgba(201, 138, 243, 0.4);
+        }
+
+        100% {
+            box-shadow: 0 0 60px 0 rgba(201, 138, 243, 0.6);
+        }
+    }
+}
