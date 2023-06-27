@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
         "svix-signature": req.headers.get("svix-signature")!,
     };
 
-    const wh = new Webhook(env.WEBHOOK_DELETE_SECRET);
+    const wh = new Webhook(env.WEBHOOK_UPDATE_SECRET);
     let body: WebhookData;
 
     try {
@@ -46,9 +46,14 @@ export async function POST(req: NextRequest) {
             message: "Ok"
         });
     } catch (err) {
+        console.log(err);
         if (err instanceof ZodError) return NextResponse.json({
             code: 422,
             message: err.issues.map((x) => x.message).join(", ")
+        });
+        return NextResponse.json({
+            code: 500,
+            message: "Internal Server Error"
         });
     }
 }

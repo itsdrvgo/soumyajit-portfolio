@@ -45,10 +45,13 @@ export async function POST(req: NextRequest) {
             message: "Ok"
         });
     } catch (err) {
-        console.log(err);
         if (err instanceof ZodError) return NextResponse.json({
             code: 422,
             message: err.issues.map((x) => x.message).join(", ")
+        });
+        return NextResponse.json({
+            code: 500,
+            message: "Internal Server Error"
         });
     }
 }

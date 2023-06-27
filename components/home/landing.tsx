@@ -5,6 +5,7 @@ import { HTMLAttributes } from "react";
 import SoumyajitMainPicture from "@/public/soumyajit_01_main.jpg";
 import { Icons } from "../icons/icons";
 import { Variants, motion } from "framer-motion";
+import Link from "next/link";
 
 function Landing({ className }: HTMLAttributes<HTMLElement>) {
     const crossIn: Variants = {
@@ -89,7 +90,7 @@ function Landing({ className }: HTMLAttributes<HTMLElement>) {
                             animate="show"
                             variants={textAnimation}
                         >
-                            <p className="tracking-normal hover:tracking-wider transition-all ease-in-out cursor-pointer pl-1 md:pl-2">Read More</p>
+                            <Link href={"/#about"} className="tracking-normal hover:tracking-wider transition-all ease-in-out cursor-pointer pl-1 md:pl-2">Read More</Link>
                             <Icons.arrowRight className="h-4 w-4 cursor-pointer" />
                         </motion.div>
                     </motion.div>

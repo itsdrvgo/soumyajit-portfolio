@@ -38,22 +38,11 @@ function DropdownProfile({ user, className }: CompProps) {
                             <Icons.user className="mr-2 h-4 w-4" />
                             <span>Profile</span>
                         </DropdownMenuItem>
-                        <DropdownMenuItem onSelect={() => router.push("/premium")} className="cursor-pointer">
+                        <DropdownMenuItem onSelect={() => router.push("/support")} className="cursor-pointer">
                             <Icons.gem className="mr-2 h-4 w-4" />
-                            <span>Pro</span>
+                            <span>Support</span>
                         </DropdownMenuItem>
                     </DropdownMenuGroup>
-
-                    <DropdownMenuSeparator />
-
-                    <DropdownMenuItem onSelect={() => router.push("/logs")} className="cursor-pointer">
-                        <Icons.list className="mr-2 h-4 w-4" />
-                        <span>Change Logs</span>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onSelect={() => router.push("/support")} className="cursor-pointer">
-                        <Icons.support className="mr-2 h-4 w-4" />
-                        <span>Support</span>
-                    </DropdownMenuItem>
 
                     {(user.role === "admin" || user.role === "owner") && (
                         <>

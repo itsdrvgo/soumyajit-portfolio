@@ -1,5 +1,5 @@
-import { InferModel } from "drizzle-orm";
-import { int, mysqlEnum, mysqlTable, timestamp, uniqueIndex, varchar } from "drizzle-orm/mysql-core";
+import { InferModel, relations } from "drizzle-orm";
+import { boolean, int, json, mysqlEnum, mysqlTable, timestamp, uniqueIndex, varchar } from "drizzle-orm/mysql-core";
 import { createInsertSchema } from "drizzle-zod";
 
 export const users = mysqlTable("users", {
@@ -17,7 +17,33 @@ export const users = mysqlTable("users", {
     };
 });
 
+export const usersRelations = relations(users, ({ many }) => ({
+	blogs: many(blogs),
+}));
+
 export type User = InferModel<typeof users>;
 export type NewUser = InferModel<typeof users, "insert">
 
 export const insertUserSchema = createInsertSchema(users);
+
+export const blogs = mysqlTable("blogs", {
+    id: int("id").autoincrement().primaryKey(),
+    title: varchar("title", { length: 255 }).notNull(),
+    content: json("content"),
+    published: boolean("published").default(false).notNull(),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at").defaultNow().notNull(),
+    authorId: varchar("authorId", { length: 255 }).notNull()
+});
+
+export const blogsRelations = relations(blogs, ({ one }) => ({
+	author: one(users, {
+		fields: [blogs.authorId],
+		references: [users.id],
+	}),
+}));
+
+export type Blog = InferModel<typeof blogs>;
+export type NewBlog = InferModel<typeof blogs, "insert">
+
+export const insertBlogSchema = createInsertSchema(blogs);

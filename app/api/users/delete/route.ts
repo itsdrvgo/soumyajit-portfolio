@@ -47,5 +47,9 @@ export async function POST(req: NextRequest) {
             code: 422,
             message: err.issues.map((x) => x.message).join(", ")
         });
+        return NextResponse.json({
+            code: 500,
+            message: "Internal Server Error"
+        });
     }
 }

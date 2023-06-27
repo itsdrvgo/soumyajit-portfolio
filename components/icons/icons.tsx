@@ -75,7 +75,8 @@ import {
     Music4,
     LogIn,
     LogOut,
-    List
+    List,
+    Construction
 } from "lucide-react";
 
 export type Icon = LucideIcon
@@ -158,6 +159,7 @@ export const Icons = {
     hide: EyeOff,
     logout: LogOut,
     list: List,
+    construction: Construction,
     discord: ({ ...props }: LucideProps) => (
 
         < svg

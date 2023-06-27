@@ -13,7 +13,10 @@ import Auth from "@/components/global/auth";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Admin Panel",
+    title: {
+        default: "Admin Panel",
+        template: "Admin Panel | %s",
+    },
     description: "Take administrative actions"
 };
 
