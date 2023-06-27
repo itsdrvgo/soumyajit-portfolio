@@ -20,7 +20,7 @@ function AdminButtons({ className }: PageProps) {
                     className="relative rounded-lg border border-white overflow-hidden h-52 cursor-pointer group"
                     onClick={() => router.push("/admin/blogs")}
                 >
-                    <Image src={CanvasBlog} alt="blog" className="opacity-50 group-hover:opacity-30 transition-all ease-in-out" />
+                    <Image src={CanvasBlog} alt="blog" className="opacity-50 group-hover:opacity-30 transition-all ease-in-out scale-150" />
                     <div className="flex flex-col items-center justify-center gap-2 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 drop-shadow-xl font-medium">
                         <Icons.pencil />
                         <p>Blog Creation Tool</p>
@@ -31,7 +31,7 @@ function AdminButtons({ className }: PageProps) {
                     className="relative rounded-lg border border-white overflow-hidden h-52 cursor-pointer group"
                     onClick={() => router.push("/admin/courses")}
                 >
-                    <Image src={CanvasCourse} alt="blog" className="opacity-50 group-hover:opacity-30 transition-all ease-in-out" />
+                    <Image src={CanvasCourse} alt="blog" className="opacity-50 group-hover:opacity-30 transition-all ease-in-out scale-150" />
                     <div className="flex flex-col items-center justify-center gap-2 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 drop-shadow-xl font-medium">
                         <Icons.bookopencheck />
                         <p>Course Creation Tool</p>
@@ -42,7 +42,7 @@ function AdminButtons({ className }: PageProps) {
                     className="relative rounded-lg border border-white overflow-hidden h-52 cursor-pointer group"
                     onClick={() => router.push("/admin/users")}
                 >
-                    <Image src={CanvasUsers} alt="blog" className="opacity-50 group-hover:opacity-30 transition-all ease-in-out" />
+                    <Image src={CanvasUsers} alt="blog" className="opacity-50 group-hover:opacity-30 transition-all ease-in-out scale-150" />
                     <div className="flex flex-col items-center justify-center gap-2 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 drop-shadow-xl font-medium">
                         <Icons.users />
                         <p>Users Panel</p>
