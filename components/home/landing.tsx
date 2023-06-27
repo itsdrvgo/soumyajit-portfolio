@@ -74,7 +74,7 @@ function Landing({ className }: HTMLAttributes<HTMLElement>) {
                             variants={textAnimation}
                         >
                             <p className="text-3xl md:text-4xl font-semibold pl-1 md:pl-2">Hi, it&apos;s me</p>
-                            <p className="text-6xl md:text-8xl font-bold text-blue-300">Soumyajit</p>
+                            <p className="text-5xl md:text-8xl font-bold text-blue-300">Soumyajit</p>
                         </motion.div>
                         <motion.div
                             initial="hide"
