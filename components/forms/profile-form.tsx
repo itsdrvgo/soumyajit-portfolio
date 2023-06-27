@@ -74,7 +74,7 @@ function ProfileForm({ data }: PageProps) {
     return (
         <Form {...form}>
             <form
-                className="flex flex-col w-1/2 gap-4"
+                className="flex flex-col w-full md:w-1/2 gap-4"
                 onSubmit={(...args) => void form.handleSubmit(onSubmit)(...args)}
             >
                 <FormField
@@ -83,7 +83,7 @@ function ProfileForm({ data }: PageProps) {
                     render={({ field }) => (
                         <FormItem>
                             <FormControl>
-                                <Input placeholder="duckymomo2002" {...field} className="w-2/5" />
+                                <Input placeholder="duckymomo2002" {...field} className="w-full md:w-1/2" />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
