@@ -1,7 +1,9 @@
-# **Next.JS 13 Template**
+# **Soumyajit Website (Next.JS 13 Project)**
 
-This template include the following features,
+This project include the following features,
 * **Database Management** with [`Drizzle ORM`](https://orm.drizzle.team/) and [`Planelscale`](https://planetscale.com/).
+* **Authntication** with [`Clerk`](https://clerk.com/).
+* **Data Validation** with [`Zod`](https://zod.dev/).
 * **Data Caching** with [`ioredis`](https://github.com/redis/ioredis) and [`Upstash`](https://upstash.com/).
 * **UI Library Management** with [`ShadCN UI`](https://ui.shadcn.com/).
 * **Environment Management** with [`T3 ENV`](https://env.t3.gg/docs/introduction).
@@ -11,9 +13,11 @@ This template include the following features,
 
 ## **Message from the Creator**
 ---
-Hey, **DRVGO** here. All the needed documentations are hyper-linked with the package names. I myself current am using this stack, although for authentication, I'm kinda in a middle of choosing between [`Clerk`](https://clerk.com/) & [`Auth.JS`](https://authjs.dev/).
+Hey, **DRVGO** here. All the needed documentations are hyper-linked with the package names. This was a side project of mine, and I'm publishing it publicly, so that people can understand and learn complex concepts of react, auth and data fetching-caching.
 
-The only reason, I'm currently not using `Auth.JS` in this template is, it's still in experimental stage and all the feature have not been implemented and tested. Also, a `Drizzle Adapter` for `next-auth` is still on the way. So, we need to wait until `Auth.JS` officially releases it.
+If you find any bug, feel free to post an issue and if you know the fix for it, feel free to fork it and create a pull request. We'll verifiy it, and merge it.
+
+If you like this project, kindly give it a star.
 
 ## **How to Run the Application**
 ---
@@ -22,11 +26,6 @@ The only reason, I'm currently not using `Auth.JS` in this template is, it's sti
 3. Once all the packages are installed, run `pnpm dev` (if you're on development mode). To make a production build, first use `pnpm build`, and then `pnpm start`.
 4. The application will be hosted locally on `http://localhost:3000`.
 5. To install UI components, make sure you read the [guide](https://ui.shadcn.com/).
-
-## **TODOS**
----
-* Add authenticaton with `Clerk` or `Auth.JS`.
-* Adding API routes for examples with simple requests.
 
 ## **SOCIALS**
 ---
