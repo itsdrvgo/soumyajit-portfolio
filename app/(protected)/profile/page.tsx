@@ -1,8 +1,11 @@
 import ProfilePage from "@/components/profile/profile-page";
 import ProfileSkeleton from "@/components/skeletons/profile-skeleton";
+import { currentUser } from "@clerk/nextjs";
 import { Suspense } from "react";
 
 async function Page() {
+    const user = await currentUser();
+
     return (
         <>
             <section className={"space-y-24 pb-8 pt-0 md:pt-16 mb-10 md:mb-20 container max-w-[75rem]"}>
@@ -15,7 +18,7 @@ async function Page() {
                     <Suspense fallback={
                         <ProfileSkeleton />
                     }>
-                        <ProfilePage />
+                        <ProfilePage className="space-y-6" user={user!} />
                     </Suspense>
                 </div>
             </section>

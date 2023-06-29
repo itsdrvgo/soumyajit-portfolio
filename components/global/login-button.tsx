@@ -13,7 +13,7 @@ function LoginButton({ className }: HTMLAttributes<HTMLElement>) {
                 variant={"secondary"}
                 size={"sm"}
                 className={className}
-                onClick={() => router.push("/sign-in")}
+                onClick={() => router.push("/signin")}
             >
                 <p className="text-gray-300">Login</p>
             </Button>

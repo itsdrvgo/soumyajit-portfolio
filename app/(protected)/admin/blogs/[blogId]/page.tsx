@@ -3,9 +3,8 @@ import { Metadata } from "next";
 import { db } from "@/lib/drizzle";
 import { Blog, User, blogs } from "@/lib/drizzle/schema";
 import { and, eq } from "drizzle-orm";
-import { currentUser } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs";
 import { notFound, redirect } from "next/navigation";
-import { Editor } from "@/components/admin/blogs/editor";
 import Maintenance from "@/components/global/maintenance";
 
 export const metadata: Metadata = {
@@ -24,10 +23,10 @@ interface EditorPageProps {
 }
 
 async function Page({ params }: EditorPageProps) {
-    const user = await currentUser();
-    if (!user) redirect("/sign-in");
+    const { userId } = auth();
+    if (!userId) redirect("/signin");
 
-    const blog = await getBlogForUser(Number(params.blogId), user.id);
+    const blog = await getBlogForUser(Number(params.blogId), userId);
     if (!blog) notFound();
 
     return (

@@ -22,9 +22,9 @@ interface PageProps extends HTMLAttributes<HTMLElement> {
 
 function ProfileForm({ data }: PageProps) {
     const { toast } = useToast();
-    const { user } = useUser();
-
     const router = useRouter();
+
+    const { user } = useUser();
     const { isLoaded } = useSignIn();
     const [isPending, startTransition] = useTransition();
 
