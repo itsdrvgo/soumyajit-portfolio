@@ -1,14 +1,14 @@
 import { OAuthSignIn } from "@/components/auth/oauth-signin";
-import { SignInForm } from "@/components/forms/sign-in-form";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
 import SoumyajitMainPicture from "@/public/soumyajit_01_main.jpg";
+import { SignUpForm } from "@/components/forms/sign-up-form";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Sign In",
-    description: "Sign in to Souyamjit Chakraborty's official website"
+    title: "Sign Up",
+    description: "Don't have account? Create one now on Soumyajit's website"
 };
 
 function Page() {
@@ -23,8 +23,8 @@ function Page() {
                     />
                     <Card className="border rounded-lg md:rounded-l-none md:rounded-tr-lg md:border-l-0 md:border-t rounded-t-none border-t-0">
                         <CardHeader>
-                            <CardTitle>Sign In</CardTitle>
-                            <CardDescription>Choose your preferred sign in method</CardDescription>
+                            <CardTitle>Create An Account</CardTitle>
+                            <CardDescription>Choose your preferred sign up method</CardDescription>
                         </CardHeader>
                         <CardContent className="grid gap-4">
                             <OAuthSignIn />
@@ -38,26 +38,19 @@ function Page() {
                                     </span>
                                 </div>
                             </div>
-                            <SignInForm />
+                            <SignUpForm />
                         </CardContent>
-                        <CardFooter className="flex flex-wrap items-center space-x-2">
-                            <div className="flex-1 text-sm text-muted-foreground">
-                                Don&apos;t have an account?{" "}
+                        <CardFooter className="grid gap-4">
+                            <div className="text-sm text-muted-foreground">
+                                Already have an account?{" "}
                                 <Link
-                                    aria-label="Sign up"
-                                    href="/sign-up"
+                                    aria-label="Sign in"
+                                    href="/signin"
                                     className="text-primary underline-offset-4 transition-colors hover:underline"
                                 >
-                                    Sign up
+                                    Sign in
                                 </Link>
                             </div>
-                            <Link
-                                aria-label="Reset password"
-                                href="/sign-in/reset-password"
-                                className="text-sm text-primary underline-offset-4 transition-colors hover:underline"
-                            >
-                                Reset password
-                            </Link>
                         </CardFooter>
                     </Card>
                 </div>

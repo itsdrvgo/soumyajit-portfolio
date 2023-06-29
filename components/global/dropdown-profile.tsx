@@ -59,7 +59,7 @@ function DropdownProfile({ user, className }: CompProps) {
 
                     <DropdownMenuSeparator />
 
-                    <DropdownMenuItem onClick={() => router.push("/sign-out")} className="cursor-pointer">
+                    <DropdownMenuItem onClick={() => router.push("/signout")} className="cursor-pointer">
                         <Icons.logout className="mr-2 h-4 w-4" />
                         <span>Log out</span>
                     </DropdownMenuItem>

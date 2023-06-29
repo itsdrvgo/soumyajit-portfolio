@@ -4,6 +4,7 @@ import { Poppins } from "next/font/google";
 import { siteConfig } from "@/config/site";
 import { Toaster } from "@/components/ui/toaster";
 import { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
 
 const poppins = Poppins({
     subsets: ["latin"],
@@ -52,6 +53,7 @@ function RootLayout({ children }: RootLayoutProps) {
                 <head />
                 <body className={`${poppins.className} min-h-screen antialiased overflow-x-hidden scroll-smooth`}>
                     {children}
+                    <Analytics/>
                     <Toaster />
                 </body>
             </html>

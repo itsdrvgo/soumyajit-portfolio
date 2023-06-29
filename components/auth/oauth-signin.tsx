@@ -8,8 +8,9 @@ import { useState } from "react";
 import { OAuthStrategy } from "@clerk/types";
 
 const oauthProviders = [
-    { name: "Google", strategy: "oauth_google", icon: "google" },
     { name: "Apple", strategy: "oauth_apple", icon: "apple" },
+    { name: "Discord", strategy: "oauth_discord", icon: "discord" },
+    { name: "GitHub", strategy: "oauth_github", icon: "github" }
 ] satisfies {
     name: string
     icon: keyof typeof Icons
@@ -50,7 +51,7 @@ function OAuthSignIn() {
     };
 
     return (
-        <div className="grid grid-cols-1 gap-2">
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-3 sm:gap-4">
             {oauthProviders.map((provider) => {
                 const Icon = Icons[provider.icon];
 
@@ -66,7 +67,7 @@ function OAuthSignIn() {
                             ? <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                             : <Icon className="mr-2 h-4 w-4" aria-hidden="true" />
                         }
-                        Continue with {provider.name}
+                        {provider.name}
                     </Button>
                 );
             })}

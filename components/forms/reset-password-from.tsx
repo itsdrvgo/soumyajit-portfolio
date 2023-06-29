@@ -40,7 +40,7 @@ function ResetPasswordForm() {
                 });
 
                 if (firstFactor.status === "needs_first_factor") {
-                    router.push("/sign-in/reset-password/step2");
+                    router.push("/signin/reset-password/step2");
                     toast({
                         title: "Check your email!",
                         description: "We sent you a 6-digit verification code."

@@ -2,7 +2,7 @@ import { homeMenuConfig } from "@/config/menu";
 import { MainNav } from "@/components/global/main-nav";
 import { SiteFooter } from "@/components/global/site-footer";
 import { ReactNode } from "react";
-import { currentUser } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import { db } from "@/lib/drizzle";
 import { eq } from "drizzle-orm";
@@ -21,10 +21,10 @@ export const metadata: Metadata = {
 };
 
 async function Layout({ children }: { children: ReactNode }) {
-    const user = await currentUser();
-    if (!user) redirect("/sign-in");
+    const { userId } = auth();
+    if (!userId) redirect("/signin");
 
-    const dbUser = await db.query.users.findFirst({ where: eq(users.id, user.id) });;
+    const dbUser = await db.query.users.findFirst({ where: eq(users.id, userId) });
     if (!dbUser) redirect("/");
 
     if (dbUser.role === "user") return (

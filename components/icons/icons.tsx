@@ -118,7 +118,7 @@ export const Icons = {
     twitter: Twitter,
     check: Check,
     instagram: Instagram,
-    gitHub: Github,
+    github: Github,
     dashboard: LayoutDashboard,
     hand: Hand,
     ticket: Ticket,
