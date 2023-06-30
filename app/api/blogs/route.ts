@@ -2,7 +2,7 @@ import { ZodError } from "zod";
 import { currentUser } from "@clerk/nextjs";
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/drizzle";
-import { blogs } from "@/lib/drizzle/schema";
+import { blogs, users } from "@/lib/drizzle/schema";
 import { eq } from "drizzle-orm";
 import { blogCreateSchema } from "@/lib/validation/blogs";
 
@@ -41,6 +41,12 @@ export async function POST(req: NextRequest) {
     try {
         const user = await currentUser();
         if (!user) return NextResponse.json({
+            code: 403,
+            message: "Unauthorized"
+        });
+
+        const dbUser = await db.query.users.findFirst({ where: eq(users.id, user.id) });
+        if (!dbUser || dbUser.role === "user") return NextResponse.json({
             code: 403,
             message: "Unauthorized"
         });
