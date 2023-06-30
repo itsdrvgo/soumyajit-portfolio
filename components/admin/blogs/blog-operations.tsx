@@ -9,14 +9,14 @@ import { Icons } from "@/components/icons/icons";
 import { Blog } from "@/lib/drizzle/schema";
 import axios from "axios";
 import { ResponseData } from "@/lib/validation/response";
-import { useState } from "react";
+import { HTMLAttributes, useState } from "react";
 import { BlogPatchData } from "@/lib/validation/blogs";
 
-interface BlogOperationsProps {
+interface BlogOperationsProps extends HTMLAttributes<HTMLElement> {
     blog: Pick<Blog, "id" | "title" | "published" | "thumbnailUrl">
 }
 
-export function BlogOperations({ blog }: BlogOperationsProps) {
+export function BlogOperations({ blog, className }: BlogOperationsProps) {
     const router = useRouter();
     const { toast } = useToast();
 
@@ -103,7 +103,7 @@ export function BlogOperations({ blog }: BlogOperationsProps) {
     return (
         <>
             <DropdownMenu>
-                <DropdownMenuTrigger className="flex h-8 w-8 items-center justify-center rounded-md border transition-colors hover:bg-muted">
+                <DropdownMenuTrigger className={className}>
                     <Icons.ellipsis className="h-4 w-4" />
                     <span className="sr-only">Open</span>
                 </DropdownMenuTrigger>

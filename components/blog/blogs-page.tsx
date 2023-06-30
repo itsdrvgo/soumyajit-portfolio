@@ -18,7 +18,7 @@ async function BlogsPage({ className }: PageProps) {
                 ? <div className={className}>
                     {data.map((blog) => (
                         <Link key={blog.id} href={`/blog/${blog.id}`}>
-                            <BlogItem blog={blog} className="border border-gray-500 rounded-md flex flex-col gap-2 items-center overflow-hidden cursor-pointer" />
+                            <BlogItem blog={blog} className="border border-gray-500 rounded-md flex flex-col gap-2 items-center h-full overflow-hidden cursor-pointer" />
                         </Link>
                     ))}
                 </div>
