@@ -15,11 +15,11 @@ async function BlogsPage({ className }: PageProps) {
             {data.length
                 ? <div className={className}>
                     {data.map((blog) => (
-                        <BlogItem key={blog.id} blog={blog} className="flex items-center justify-between p-4" />
+                        <BlogItem key={blog.id} blog={blog} className="border border-gray-500 rounded-md flex flex-col gap-2 items-center overflow-hidden" />
                     ))}
                 </div>
                 : <EmptyPlaceholder>
-                    <EmptyPlaceholder.Icon name="logs" />
+                    <EmptyPlaceholder.Icon name="document" />
                     <EmptyPlaceholder.Title>No blogs created</EmptyPlaceholder.Title>
                     <EmptyPlaceholder.Description>
                         You don&apos;t have any blogs yet. Start creating content.

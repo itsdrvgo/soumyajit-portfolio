@@ -11,7 +11,7 @@ export async function GET() {
         const user = await currentUser();
         if (!user) return NextResponse.json({
             code: 403,
-            message: "Unauthorized"
+            message: "Unauthorized!"
         });
 
         const filteredBlogs = await db.query.blogs.findMany({
@@ -51,6 +51,7 @@ export async function POST(req: NextRequest) {
         const newBlog = await db.insert(blogs).values({
             title: body.title,
             content: body.content,
+            thumbnailUrl: body.thumbnailUrl,
             authorId: user.id
         });
 

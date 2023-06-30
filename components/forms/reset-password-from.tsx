@@ -53,10 +53,12 @@ function ResetPasswordForm() {
                     ? toast({
                         title: "Oops!",
                         description: error.errors[0]?.longMessage ?? unknownError,
+                        variant: "destructive"
                     })
                     : toast({
                         title: "Oops!",
                         description: unknownError,
+                        variant: "destructive"
                     });
             }
         });

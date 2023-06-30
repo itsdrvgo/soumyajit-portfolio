@@ -1,5 +1,5 @@
 import { InferModel, relations } from "drizzle-orm";
-import { boolean, int, json, mysqlEnum, mysqlTable, timestamp, uniqueIndex, varchar } from "drizzle-orm/mysql-core";
+import { boolean, int, json, longtext, mysqlEnum, mysqlTable, timestamp, uniqueIndex, varchar } from "drizzle-orm/mysql-core";
 import { createInsertSchema } from "drizzle-zod";
 
 export const users = mysqlTable("users", {
@@ -29,7 +29,8 @@ export const insertUserSchema = createInsertSchema(users);
 export const blogs = mysqlTable("blogs", {
     id: int("id").autoincrement().primaryKey(),
     title: varchar("title", { length: 255 }).notNull(),
-    content: json("content"),
+    thumbnailUrl: varchar("thumbnailUrl", { length: 255 }),
+    content: longtext("content"),
     published: boolean("published").default(false).notNull(),
     createdAt: timestamp("created_at").defaultNow().notNull(),
     updatedAt: timestamp("updated_at").defaultNow().notNull(),

@@ -52,7 +52,9 @@ export async function PATCH(req: Request, context: z.infer<typeof routeContextSc
 
         await db.update(blogs).set({
             title: body.title,
-            content: body.content
+            content: body.content,
+            thumbnailUrl: body.thumbnailUrl,
+            published: body.published
         }).where(eq(blogs.id, Number(params.blogId)));
         return NextResponse.json({
             code: 200,

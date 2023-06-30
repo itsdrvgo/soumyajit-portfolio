@@ -13,6 +13,8 @@ export const env = createEnv({
         WEBHOOK_CREATE_SECRET: z.string(),
         WEBHOOK_UPDATE_SECRET: z.string(),
         WEBHOOK_DELETE_SECRET: z.string(),
+        UPLOADTHING_SECRET: z.string(),
+        UPLOADTHING_APP_ID: z.string(),
 
         NODE_ENV: z.enum(["development", "test", "production"])
     },
@@ -32,6 +34,8 @@ export const env = createEnv({
         WEBHOOK_CREATE_SECRET: process.env.WEBHOOK_CREATE_SECRET,
         WEBHOOK_UPDATE_SECRET: process.env.WEBHOOK_UPDATE_SECRET,
         WEBHOOK_DELETE_SECRET: process.env.WEBHOOK_DELETE_SECRET,
+        UPLOADTHING_SECRET: process.env.UPLOADTHING_SECRET,
+        UPLOADTHING_APP_ID: process.env.UPLOADTHING_APP_ID,
 
         NODE_ENV: process.env.NODE_ENV
     }

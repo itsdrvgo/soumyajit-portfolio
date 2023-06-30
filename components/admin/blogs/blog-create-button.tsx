@@ -8,7 +8,6 @@ import { Icons } from "@/components/icons/icons";
 import { useState } from "react";
 import axios from "axios";
 import { ResponseData } from "@/lib/validation/response";
-import { Blog } from "@/lib/drizzle/schema";
 
 interface PostCreateButtonProps extends ButtonProps { }
 
@@ -34,7 +33,7 @@ export function BlogCreateButton({
             if (resData.code !== 200) return toast({
                 title: "Oops!",
                 description: resData.message + ", try again later",
-                variant: "destructive",
+                variant: "destructive"
             });
 
             const blogId = JSON.parse(resData.data);

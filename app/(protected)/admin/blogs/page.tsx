@@ -19,12 +19,16 @@ function Page() {
                             <p className="text-4xl font-bold">Blogs</p>
                             <p className="text-gray-400">Create and manage blogs</p>
                         </div>
-                        <BlogCreateButton disabled />
+                        <BlogCreateButton />
                     </div>
                     <Suspense fallback={
-                        <BlogsSkeleton />
+                        <div className="grid grid-cols-1 md:grid-cols-3 justify-items-stretch gap-5">
+                            {Array.from({ length: 4 }, (_, index) => (
+                                <BlogsSkeleton key={index} />
+                            ))}
+                        </div>
                     }>
-                        <BlogsPage className="w-full divide-y divide-border rounded-md border" />
+                        <BlogsPage className="grid grid-cols-1 md:grid-cols-3 justify-items-stretch gap-5" />
                     </Suspense>
                 </div>
             </section>
