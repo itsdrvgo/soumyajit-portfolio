@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const blog = await getBlogForUser(Number(params.blogId), userId!);
     if (!blog) return {};
 
-    const url = env.NEXT_PUBLIC_APP_URL;
+    const url = env.NODE_ENV === "development" ? env.NEXT_PUBLIC_APP_URL_DEV : env.NEXT_PUBLIC_APP_URL_PROD;
     const ogUrl = new URL(`${url}/blog/${blog.id}`);
 
     return {

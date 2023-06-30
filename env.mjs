@@ -20,11 +20,15 @@ export const env = createEnv({
     },
     client: {
         NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string(),
-        NEXT_PUBLIC_APP_URL: z.string()
+        NEXT_PUBLIC_APP_URL: z.string(),
+        NEXT_PUBLIC_APP_URL_DEV: z.string(),
+        NEXT_PUBLIC_APP_URL_PROD: z.string()
     },
     runtimeEnv: {
         NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
         NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
+        NEXT_PUBLIC_APP_URL_DEV: process.env.NEXT_PUBLIC_APP_URL_DEV,
+        NEXT_PUBLIC_APP_URL_PROD: process.env.NEXT_PUBLIC_APP_URL_PROD,
 
         CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY,
         DEV_DATABASE_URL: process.env.DEV_DATABASE_URL,
