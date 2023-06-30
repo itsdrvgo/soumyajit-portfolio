@@ -1,30 +1,34 @@
 import { db } from "@/lib/drizzle";
 import { blogs } from "@/lib/drizzle/schema";
 import { HTMLAttributes } from "react";
-import { EmptyPlaceholder } from "@/components/ui/empty-placeholder";
-import { BlogCreateButton } from "./blog-create-button";
+import { EmptyPlaceholder } from "../ui/empty-placeholder";
 import { BlogItem } from "./blog-item";
+import Link from "next/link";
+import { eq } from "drizzle-orm";
+import { GoBackButton } from "../global/go-back-button";
 
 interface PageProps extends HTMLAttributes<HTMLElement> { }
 
 async function BlogsPage({ className }: PageProps) {
-    const data = await db.select().from(blogs);
+    const data = await db.select().from(blogs).where(eq(blogs.published, true));
 
     return (
         <>
             {data.length
                 ? <div className={className}>
                     {data.map((blog) => (
-                        <BlogItem key={blog.id} blog={blog} className="border border-gray-500 rounded-md flex flex-col gap-2 items-center overflow-hidden" />
+                        <Link key={blog.id} href={`/blog/${blog.id}`}>
+                            <BlogItem blog={blog} className="border border-gray-500 rounded-md flex flex-col gap-2 items-center overflow-hidden cursor-pointer" />
+                        </Link>
                     ))}
                 </div>
                 : <EmptyPlaceholder>
                     <EmptyPlaceholder.Icon name="document" />
                     <EmptyPlaceholder.Title>No blogs created</EmptyPlaceholder.Title>
                     <EmptyPlaceholder.Description>
-                        You don&apos;t have any blogs yet. Start creating content.
+                        Soumyajit has not posted any blogs yet.
                     </EmptyPlaceholder.Description>
-                    <BlogCreateButton variant="outline" />
+                    <GoBackButton />
                 </EmptyPlaceholder>
             }
         </>

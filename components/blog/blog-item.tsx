@@ -1,7 +1,5 @@
-import Link from "next/link";
 import { formatDate } from "@/lib/utils";
 import { Blog } from "@/lib/drizzle/schema";
-import { BlogOperations } from "./blog-operations";
 import { HTMLAttributes } from "react";
 import Image from "next/image";
 
@@ -17,19 +15,11 @@ export function BlogItem({ blog, className }: BlogItemProps) {
             </div>
             <div className="flex justify-between items-center w-full p-5">
                 <div className="grid gap-1">
-                    <Link
-                        href={`/admin/blogs/${blog.id}`}
-                        className="font-semibold hover:underline"
-                    >
-                        {blog.title}
-                    </Link>
-                    <div>
-                        <p className="text-sm text-muted-foreground">
-                            {formatDate(blog.createdAt.toDateString())}
-                        </p>
-                    </div>
+                    <p className="font-semibold">{blog.title}</p>
+                    <p className="text-sm text-muted-foreground">
+                        {formatDate(blog.createdAt.toDateString())}
+                    </p>
                 </div>
-                <BlogOperations blog={{ id: blog.id, title: blog.title, published: blog.published, thumbnailUrl: blog.thumbnailUrl }} />
             </div>
         </div>
     );

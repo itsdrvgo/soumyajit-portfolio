@@ -59,14 +59,16 @@ function ProfileForm({ data }: PageProps) {
                 const unknownError = "Something went wrong, please try again.";
 
                 isClerkAPIResponseError(error)
-                ? toast({
-                    title: "Oops!",
-                    description: error.errors[0]?.longMessage ?? unknownError,
-                })
-                : toast({
-                    title: "Oops!",
-                    description: unknownError,
-                });
+                    ? toast({
+                        title: "Oops!",
+                        description: error.errors[0]?.longMessage ?? unknownError,
+                        variant: "destructive"
+                    })
+                    : toast({
+                        title: "Oops!",
+                        description: unknownError,
+                        variant: "destructive"
+                    });
             }
         });
     }

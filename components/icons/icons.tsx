@@ -76,7 +76,8 @@ import {
     LogIn,
     LogOut,
     List,
-    Construction
+    Construction,
+    Globe
 } from "lucide-react";
 
 export type Icon = LucideIcon
@@ -132,7 +133,6 @@ export const Icons = {
     application: BookMarked,
     support: LifeBuoy,
     verified: Verified,
-    logs: FileText,
     command: Command,
     left: ChevronLeft,
     hash: Hash,
@@ -160,6 +160,8 @@ export const Icons = {
     logout: LogOut,
     list: List,
     construction: Construction,
+    document: FileText,
+    globe: Globe,
     discord: ({ ...props }: LucideProps) => (
 
         < svg

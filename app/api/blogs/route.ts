@@ -2,7 +2,7 @@ import { ZodError } from "zod";
 import { currentUser } from "@clerk/nextjs";
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/drizzle";
-import { blogs } from "@/lib/drizzle/schema";
+import { blogs, users } from "@/lib/drizzle/schema";
 import { eq } from "drizzle-orm";
 import { blogCreateSchema } from "@/lib/validation/blogs";
 
@@ -11,7 +11,7 @@ export async function GET() {
         const user = await currentUser();
         if (!user) return NextResponse.json({
             code: 403,
-            message: "Unauthorized"
+            message: "Unauthorized!"
         });
 
         const filteredBlogs = await db.query.blogs.findMany({
@@ -45,12 +45,19 @@ export async function POST(req: NextRequest) {
             message: "Unauthorized"
         });
 
+        const dbUser = await db.query.users.findFirst({ where: eq(users.id, user.id) });
+        if (!dbUser || dbUser.role === "user") return NextResponse.json({
+            code: 403,
+            message: "Unauthorized"
+        });
+
         const json = await req.json();
         const body = blogCreateSchema.parse(json);
 
         const newBlog = await db.insert(blogs).values({
             title: body.title,
             content: body.content,
+            thumbnailUrl: body.thumbnailUrl,
             authorId: user.id
         });
 
