@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { Metadata } from "next";
-import BlogEditPage from "@/components/admin/blogs/blog-edit-page";
+import BlogViewPage from "@/components/blog/blog-view-page";
 import BlogViewSkeleton from "@/components/skeletons/blog-view-skeleton";
 
 export const metadata: Metadata = {
@@ -19,7 +19,7 @@ async function Page({ params }: EditorPageProps) {
                 <Suspense fallback={
                     <BlogViewSkeleton />
                 }>
-                    <BlogEditPage params={params} />
+                    <BlogViewPage params={params} />
                 </Suspense>
             </section>
         </>
