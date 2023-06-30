@@ -4,9 +4,6 @@ import { SiteFooter } from "@/components/global/site-footer";
 import { ReactNode } from "react";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
-import { db } from "@/lib/drizzle";
-import { eq } from "drizzle-orm";
-import { users } from "@/lib/drizzle/schema";
 import Auth from "@/components/global/auth";
 import { Metadata } from "next";
 
@@ -18,9 +15,6 @@ export const metadata: Metadata = {
 async function Layout({ children }: { children: ReactNode }) {
     const { userId } = auth();
     if (!userId) redirect("/signin");
-
-    const dbUser = await db.query.users.findFirst({ where: eq(users.id, userId) });
-    if (!dbUser) redirect("/");
 
     return (
         <div className="flex min-h-screen flex-col">
