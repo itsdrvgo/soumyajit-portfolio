@@ -12,11 +12,9 @@ interface BlogItemProps extends HTMLAttributes<HTMLElement> {
 export function BlogItem({ blog, className }: BlogItemProps) {
     return (
         <div className={className}>
-            <div>
-                <Image src={blog.thumbnailUrl ?? "https://cdn.discordapp.com/attachments/1091399104480944158/1124287608990736476/pexels-photo-2426085.webp"} alt={blog.id.toString()} width={500} height={500} className="aspect-video" />
-            </div>
+            <Image src={blog.thumbnailUrl ?? "https://cdn.discordapp.com/attachments/1091399104480944158/1124287608990736476/pexels-photo-2426085.webp"} alt={blog.id.toString()} width={500} height={500} className="aspect-video" />
             <div className="flex justify-between items-center w-full p-5">
-                <div className="grid gap-1">
+                <div className="grid gap-1 basis-5/6">
                     <Link
                         href={`/admin/blogs/${blog.id}`}
                         className="font-semibold hover:underline"
@@ -29,7 +27,10 @@ export function BlogItem({ blog, className }: BlogItemProps) {
                         </p>
                     </div>
                 </div>
-                <BlogOperations blog={{ id: blog.id, title: blog.title, published: blog.published, thumbnailUrl: blog.thumbnailUrl }} />
+                <BlogOperations
+                    blog={{ id: blog.id, title: blog.title, published: blog.published, thumbnailUrl: blog.thumbnailUrl }}
+                    className="flex h-8 w-8 items-center justify-center rounded-md border transition-colors hover:bg-muted"
+                />
             </div>
         </div>
     );
