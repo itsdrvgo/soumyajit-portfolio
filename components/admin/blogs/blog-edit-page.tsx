@@ -1,6 +1,6 @@
 import { db } from "@/lib/drizzle";
 import { Blog, User, blogs, users } from "@/lib/drizzle/schema";
-import { auth, currentUser } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs";
 import { and, eq } from "drizzle-orm";
 import { notFound, redirect } from "next/navigation";
 import { HTMLAttributes } from "react";

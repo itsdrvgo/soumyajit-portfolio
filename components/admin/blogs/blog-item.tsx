@@ -18,7 +18,7 @@ export function BlogItem({ blog, className }: BlogItemProps) {
             <div className="flex justify-between items-center w-full p-5">
                 <div className="grid gap-1">
                     <Link
-                        href={`/editor/${blog.id}`}
+                        href={`/admin/blogs/${blog.id}`}
                         className="font-semibold hover:underline"
                     >
                         {blog.title}

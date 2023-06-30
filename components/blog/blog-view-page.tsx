@@ -1,6 +1,6 @@
 import { db } from "@/lib/drizzle";
 import { Blog, User, blogs, users } from "@/lib/drizzle/schema";
-import { auth, currentUser } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs";
 import { and, eq } from "drizzle-orm";
 import { notFound, redirect } from "next/navigation";
 import { HTMLAttributes } from "react";
@@ -16,7 +16,7 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import { formatDate } from "@/lib/utils";
 
-async function getBlogForUser(blogId: Blog["id"], userId: User["id"]) {
+export async function getBlogForUser(blogId: Blog["id"], userId: User["id"]) {
     return await db.query.blogs.findFirst({
         where: and(eq(blogs.authorId, userId), eq(blogs.id, Number(blogId))),
     });
