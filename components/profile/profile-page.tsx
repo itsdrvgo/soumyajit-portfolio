@@ -30,7 +30,7 @@ async function ProfilePage({ className, user }: PageProps) {
                 </Card>
                 <Card>
                     <CardHeader>
-                        <CardTitle>Account Deletion</CardTitle>
+                        <CardTitle>Danger Zone</CardTitle>
                         <CardDescription>Send a request for account deletion. This is a non-reversable process, all of your data will be deleted.</CardDescription>
                     </CardHeader>
                     <CardContent>

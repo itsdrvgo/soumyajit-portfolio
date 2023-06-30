@@ -1,10 +1,11 @@
 import { homeMenuConfig } from "@/config/menu";
 import { MainNav } from "@/components/global/main-nav";
 import { SiteFooter } from "@/components/global/site-footer";
-import { ReactNode } from "react";
+import { ReactNode, Suspense } from "react";
 import Auth from "@/components/global/auth";
 import "./page.css";
 import { Metadata } from "next";
+import LoginButton from "@/components/global/login-button";
 
 export const metadata: Metadata = {
     title: "Home"
@@ -17,7 +18,11 @@ function Layout({ children }: { children: ReactNode }) {
                 <div className="flex h-20 items-center justify-between py-6 container">
                     <MainNav items={homeMenuConfig.mainNav} className="flex gap-6 md:gap-10" />
                     <nav>
-                        <Auth />
+                        <Suspense fallback={
+                            <LoginButton className="px-4 flex gap-2 items-center" />
+                        }>
+                            <Auth />
+                        </Suspense>
                     </nav>
                 </div>
             </header>
