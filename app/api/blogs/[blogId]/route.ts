@@ -1,15 +1,16 @@
-import { ZodError, z } from "zod";
+import { z } from "zod";
 import { db } from "@/lib/drizzle";
 import { blogs } from "@/lib/drizzle/schema";
 import { and, eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 import { currentUser } from "@clerk/nextjs";
-import { postPatchSchema } from "@/lib/validation/blogs";
+import { postPatchSchema, publishSchema } from "@/lib/validation/blogs";
+import { handleError } from "@/lib/utils";
 
 const routeContextSchema = z.object({
     params: z.object({
-        blogId: z.string(),
-    }),
+        blogId: z.string()
+    })
 });
 
 export async function DELETE(req: NextRequest, context: z.infer<typeof routeContextSchema>) {
@@ -27,18 +28,11 @@ export async function DELETE(req: NextRequest, context: z.infer<typeof routeCont
             message: "OK"
         });
     } catch (err) {
-        if (err instanceof ZodError) return NextResponse.json({
-            code: 422,
-            message: err.issues.map((x) => x.message).join(", ")
-        });
-        return NextResponse.json({
-            code: 500,
-            message: "Internal Server Error"
-        });
+        handleError(err);
     }
 }
 
-export async function PATCH(req: Request, context: z.infer<typeof routeContextSchema>) {
+export async function PATCH(req: NextRequest, context: z.infer<typeof routeContextSchema>) {
     try {
         const { params } = routeContextSchema.parse(context);
 
@@ -50,25 +44,46 @@ export async function PATCH(req: Request, context: z.infer<typeof routeContextSc
         const json = await req.json();
         const body = postPatchSchema.parse(json);
 
-        await db.update(blogs).set({
-            title: body.title,
-            content: body.content,
-            thumbnailUrl: body.thumbnailUrl,
-            published: body.published
-        }).where(eq(blogs.id, Number(params.blogId)));
-        return NextResponse.json({
-            code: 200,
-            message: "OK"
-        });
+        switch (body.action) {
+            case "edit": {
+                try {
+                    await db.update(blogs).set({
+                        title: body.title,
+                        content: body.content,
+                        thumbnailUrl: body.thumbnailUrl
+                    }).where(eq(blogs.id, Number(params.blogId)));
+
+                    return NextResponse.json({
+                        code: 200,
+                        message: "OK"
+                    });
+                } catch (err) {
+                    return handleError(err);
+                }
+            }
+
+            case "publish": {
+                try {
+                    const publishBody = publishSchema.parse(body);
+
+                    await db.update(blogs).set({
+                        title: publishBody.title,
+                        content: publishBody.content,
+                        thumbnailUrl: publishBody.thumbnailUrl,
+                        published: publishBody.published
+                    }).where(eq(blogs.id, Number(params.blogId)));
+
+                    return NextResponse.json({
+                        code: 200,
+                        message: "OK"
+                    });
+                } catch (err) {
+                    return handleError(err);
+                }
+            }
+        }
     } catch (err) {
-        if (err instanceof ZodError) return NextResponse.json({
-            code: 422,
-            message: err.issues.map((x) => x.message).join(", ")
-        });
-        return NextResponse.json({
-            code: 500,
-            message: "Internal Server Error"
-        });
+        handleError(err);
     }
 }
 

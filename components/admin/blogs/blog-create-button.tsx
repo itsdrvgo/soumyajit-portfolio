@@ -32,7 +32,7 @@ export function BlogCreateButton({
             setIsLoading(false);
             if (resData.code !== 200) return toast({
                 title: "Oops!",
-                description: resData.message + ", try again later",
+                description: resData.message,
                 variant: "destructive"
             });
 

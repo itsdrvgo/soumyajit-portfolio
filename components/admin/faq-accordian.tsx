@@ -27,6 +27,12 @@ function FAQAccordian({ className }: PageProps) {
                         It is very much important to keep track of your users. So, we made it simpler by adding a dedicated panel to manage all the signed-in users.
                     </AccordionContent>
                 </AccordionItem>
+                <AccordionItem value="item-4">
+                    <AccordionTrigger>What is Auto Post Tool?</AccordionTrigger>
+                    <AccordionContent>
+                        Link your social accounts and create a post directly from the panel. Once you hit the post button, the post will be posted in all your linked profiles or pages, and will be visible to everyone.
+                    </AccordionContent>
+                </AccordionItem>
             </Accordion>
         </>
     );

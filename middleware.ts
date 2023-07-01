@@ -9,7 +9,7 @@ export default authMiddleware({
         "/sso-callback(.*)",
         "/api(.*)"
     ],
-    async afterAuth(auth, req) {
+    afterAuth(auth, req) {
         if (auth.isPublicRoute) return NextResponse.next();
 
         const url = new URL(req.nextUrl.origin);

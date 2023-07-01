@@ -44,7 +44,7 @@ function DropdownProfile({ user, className }: CompProps) {
                         </DropdownMenuItem>
                     </DropdownMenuGroup>
 
-                    {(user.role === "admin" || user.role === "owner") && (
+                    {(user.role !== "user") && (
                         <>
                             <DropdownMenuSeparator />
 

@@ -9,7 +9,7 @@ export const users = mysqlTable("users", {
     email: varchar("email", { length: 255 }).notNull(),
     profile_image_url: varchar("imageUrl", { length: 255 }),
     created_at: timestamp("createdAt", { mode: "string" }).notNull().defaultNow(),
-    role: mysqlEnum("role", ["user", "admin", "owner"]).default("user")
+    role: mysqlEnum("role", ["user", "moderator", "admin", "owner"]).default("user").notNull()
 }, (table) => {
     return {
         userIdIdx: uniqueIndex("userId_Idx").on(table.id),
