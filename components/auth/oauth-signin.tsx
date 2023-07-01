@@ -8,7 +8,7 @@ import { useState } from "react";
 import { OAuthStrategy } from "@clerk/types";
 
 const oauthProviders = [
-    { name: "Apple", strategy: "oauth_apple", icon: "apple" },
+    { name: "Google", strategy: "oauth_google", icon: "google" },
     { name: "Discord", strategy: "oauth_discord", icon: "discord" },
     { name: "GitHub", strategy: "oauth_github", icon: "github" }
 ] satisfies {
