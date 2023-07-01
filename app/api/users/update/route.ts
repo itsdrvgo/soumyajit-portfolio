@@ -1,13 +1,13 @@
 import { env } from "@/env.mjs";
 import { db } from "@/lib/drizzle";
 import { users } from "@/lib/drizzle/schema";
+import { handleError } from "@/lib/utils";
 import { userWebhookSchema } from "@/lib/validation/users";
 import { WebhookData, webhookSchema } from "@/lib/validation/webhook";
 import { SvixHeaders } from "@/types";
 import { eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 import { Webhook } from "svix";
-import { ZodError } from "zod";
 
 export async function POST(req: NextRequest) {
     const payload = await req.json();
@@ -46,14 +46,6 @@ export async function POST(req: NextRequest) {
             message: "Ok"
         });
     } catch (err) {
-        console.log(err);
-        if (err instanceof ZodError) return NextResponse.json({
-            code: 422,
-            message: err.issues.map((x) => x.message).join(", ")
-        });
-        return NextResponse.json({
-            code: 500,
-            message: "Internal Server Error"
-        });
+        handleError(err);
     }
 }

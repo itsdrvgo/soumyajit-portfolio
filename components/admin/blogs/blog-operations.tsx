@@ -10,10 +10,10 @@ import { Blog } from "@/lib/drizzle/schema";
 import axios from "axios";
 import { ResponseData } from "@/lib/validation/response";
 import { HTMLAttributes, useState } from "react";
-import { BlogPatchData } from "@/lib/validation/blogs";
+import { BlogPatchData, BlogPublishData, publishSchema } from "@/lib/validation/blogs";
 
 interface BlogOperationsProps extends HTMLAttributes<HTMLElement> {
-    blog: Pick<Blog, "id" | "title" | "published" | "thumbnailUrl">
+    blog: Pick<Blog, "id" | "title" | "published" | "thumbnailUrl" | "content">
 }
 
 export function BlogOperations({ blog, className }: BlogOperationsProps) {
@@ -35,7 +35,7 @@ export function BlogOperations({ blog, className }: BlogOperationsProps) {
 
                 if (resData.code !== 204) return toast({
                     title: "Oops!",
-                    description: "Blog was not deleted, try again later",
+                    description: resData.message,
                     variant: "destructive"
                 });
 
@@ -60,15 +60,10 @@ export function BlogOperations({ blog, className }: BlogOperationsProps) {
     const publishBlog = () => {
         setIsPublishLoading(true);
 
-        if (!blog.thumbnailUrl || !blog.thumbnailUrl.length) return toast({
-            title: "Oops!",
-            description: "Blog must have a thumbnail",
-            variant: "destructive"
-        });
-
         const body: BlogPatchData = {
             ...blog,
-            published: true
+            published: true,
+            action: "publish"
         };
 
         axios.patch<ResponseData>(`/api/blogs/${blog.id}`, JSON.stringify(body))
@@ -78,7 +73,7 @@ export function BlogOperations({ blog, className }: BlogOperationsProps) {
 
                 if (resData.code !== 200) return toast({
                     title: "Oops!",
-                    description: "Blog was not published, try again later",
+                    description: resData.message,
                     variant: "destructive"
                 });
 

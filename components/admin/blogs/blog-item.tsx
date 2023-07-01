@@ -6,15 +6,15 @@ import { HTMLAttributes } from "react";
 import Image from "next/image";
 
 interface BlogItemProps extends HTMLAttributes<HTMLElement> {
-    blog: Pick<Blog, "id" | "title" | "published" | "createdAt" | "thumbnailUrl">
+    blog: Pick<Blog, "id" | "title" | "published" | "createdAt" | "thumbnailUrl" | "content">
 }
 
 export function BlogItem({ blog, className }: BlogItemProps) {
     return (
         <div className={className}>
             <Image src={blog.thumbnailUrl ?? "https://cdn.discordapp.com/attachments/1091399104480944158/1124287608990736476/pexels-photo-2426085.webp"} alt={blog.id.toString()} width={500} height={500} className="aspect-video object-cover" />
-            <div className="flex justify-between items-center w-full p-5">
-                <div className="grid gap-1 basis-5/6">
+            <div className="flex justify-between items-center w-full h-full p-5">
+                <div className="flex flex-col justify-between h-full basis-5/6">
                     <Link
                         href={`/admin/blogs/${blog.id}`}
                         className="font-semibold hover:underline"
@@ -28,7 +28,7 @@ export function BlogItem({ blog, className }: BlogItemProps) {
                     </div>
                 </div>
                 <BlogOperations
-                    blog={{ id: blog.id, title: blog.title, published: blog.published, thumbnailUrl: blog.thumbnailUrl }}
+                    blog={{ id: blog.id, title: blog.title, published: blog.published, thumbnailUrl: blog.thumbnailUrl, content: blog.content }}
                     className="flex h-8 w-8 items-center justify-center rounded-md border transition-colors hover:bg-muted"
                 />
             </div>

@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { HTMLAttributes, useState } from "react";
 import { User } from "@/lib/drizzle/schema";
+import UserOperation from "./user-operation";
 
 export const columns: ColumnDef<User>[] = [
     {
@@ -77,30 +78,18 @@ export const columns: ColumnDef<User>[] = [
                     <DropdownMenuContent align="end">
                         <DropdownMenuLabel>Actions</DropdownMenuLabel>
                         <DropdownMenuItem
+                            className="cursor-pointer"
                             onClick={() => navigator.clipboard.writeText(rowData.id)}
                         >
                             Copy User ID
                         </DropdownMenuItem>
                         <DropdownMenuItem
+                            className="cursor-pointer"
                             onClick={() => navigator.clipboard.writeText(rowData.email)}
                         >
                             Copy Email ID
                         </DropdownMenuItem>
-                        <>
-                            {rowData.role !== "owner"
-                                ? (
-                                    <>
-                                        <DropdownMenuSeparator />
-                                        <DropdownMenuItem>
-                                            {rowData.role === "admin" ? "Demote" : "Promote"}
-                                        </DropdownMenuItem>
-                                    </>
-                                ) : null
-                            }
-
-                        </>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem>Delete User</DropdownMenuItem>
+                        <UserOperation rowData={rowData} />
                     </DropdownMenuContent>
                 </DropdownMenu>
             );

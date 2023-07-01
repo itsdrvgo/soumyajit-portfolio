@@ -50,7 +50,8 @@ function BlogWriteUp({ className, params, data, user }: PageProps) {
             thumbnailUrl: thumbnailURL,
             title: blogTitle,
             content: blogContent,
-            published: data.published
+            published: data.published,
+            action: "edit"
         };
 
         axios.patch<ResponseData>(`/api/blogs/${data.id}`, JSON.stringify(body))

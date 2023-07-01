@@ -1,10 +1,10 @@
-import { ZodError } from "zod";
 import { currentUser } from "@clerk/nextjs";
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/drizzle";
 import { blogs, users } from "@/lib/drizzle/schema";
 import { eq } from "drizzle-orm";
 import { blogCreateSchema } from "@/lib/validation/blogs";
+import { handleError } from "@/lib/utils";
 
 export async function GET() {
     try {
@@ -30,10 +30,7 @@ export async function GET() {
             data: JSON.stringify(filteredBlogs)
         });
     } catch (err) {
-        return NextResponse.json({
-            code: 500,
-            message: "Internal Server Error"
-        });
+        handleError(err);
     }
 }
 
@@ -46,7 +43,7 @@ export async function POST(req: NextRequest) {
         });
 
         const dbUser = await db.query.users.findFirst({ where: eq(users.id, user.id) });
-        if (!dbUser || dbUser.role === "user") return NextResponse.json({
+        if (!dbUser || ["user", "moderator"].includes(dbUser.role)) return NextResponse.json({
             code: 403,
             message: "Unauthorized"
         });
@@ -67,13 +64,6 @@ export async function POST(req: NextRequest) {
             data: JSON.stringify(newBlog.insertId)
         });
     } catch (err) {
-        if (err instanceof ZodError) return NextResponse.json({
-            code: 422,
-            message: err.issues.map((x) => x.message).join(", ")
-        });
-        return NextResponse.json({
-            code: 500,
-            message: "Internal Server Error"
-        });
+        handleError(err);
     }
 }
