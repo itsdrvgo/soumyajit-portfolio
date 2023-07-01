@@ -4,6 +4,8 @@ import { HTMLAttributes } from "react";
 import { EmptyPlaceholder } from "@/components/ui/empty-placeholder";
 import { BlogCreateButton } from "./blog-create-button";
 import { BlogItem } from "./blog-item";
+import FAQAccordian from "./faq-accordian";
+import { Separator } from "@/components/ui/separator";
 
 interface PageProps extends HTMLAttributes<HTMLElement> { }
 
@@ -27,6 +29,11 @@ async function BlogsPage({ className }: PageProps) {
                     <BlogCreateButton variant="outline" />
                 </EmptyPlaceholder>
             }
+            <div className="space-y-4">
+                <p className="text-4xl font-bold">F.A.Q.</p>
+                <Separator className="h-[2px] w-12 bg-blue-300" />
+                <FAQAccordian className="w-full" />
+            </div>
         </>
     );
 }
