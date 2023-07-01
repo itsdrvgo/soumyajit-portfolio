@@ -48,7 +48,7 @@ export function handleError(err: unknown) {
         code: err.status,
         message: err.message
     });
-    return NextResponse.json({
+    else return NextResponse.json({
         code: 500,
         message: "Internal Server Error"
     });

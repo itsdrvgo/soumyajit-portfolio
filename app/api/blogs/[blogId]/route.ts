@@ -46,31 +46,42 @@ export async function PATCH(req: NextRequest, context: z.infer<typeof routeConte
 
         switch (body.action) {
             case "edit": {
-                await db.update(blogs).set({
-                    title: body.title,
-                    content: body.content,
-                    thumbnailUrl: body.thumbnailUrl
-                }).where(eq(blogs.id, Number(params.blogId)));
+                try {
+                    await db.update(blogs).set({
+                        title: body.title,
+                        content: body.content,
+                        thumbnailUrl: body.thumbnailUrl
+                    }).where(eq(blogs.id, Number(params.blogId)));
+
+                    return NextResponse.json({
+                        code: 200,
+                        message: "OK"
+                    });
+                } catch (err) {
+                    return handleError(err);
+                }
             }
-                break;
 
             case "publish": {
-                const publishBody = publishSchema.parse(body);
+                try {
+                    const publishBody = publishSchema.parse(body);
 
-                await db.update(blogs).set({
-                    title: publishBody.title,
-                    content: publishBody.content,
-                    thumbnailUrl: publishBody.thumbnailUrl,
-                    published: publishBody.published
-                }).where(eq(blogs.id, Number(params.blogId)));
+                    await db.update(blogs).set({
+                        title: publishBody.title,
+                        content: publishBody.content,
+                        thumbnailUrl: publishBody.thumbnailUrl,
+                        published: publishBody.published
+                    }).where(eq(blogs.id, Number(params.blogId)));
+
+                    return NextResponse.json({
+                        code: 200,
+                        message: "OK"
+                    });
+                } catch (err) {
+                    return handleError(err);
+                }
             }
-                break;
         }
-
-        return NextResponse.json({
-            code: 200,
-            message: "OK"
-        });
     } catch (err) {
         handleError(err);
     }

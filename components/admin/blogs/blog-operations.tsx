@@ -62,7 +62,7 @@ export function BlogOperations({ blog, className }: BlogOperationsProps) {
 
         const body: BlogPatchData = {
             ...blog,
-            published: true,
+            published: !blog.published,
             action: "publish"
         };
 
@@ -79,17 +79,17 @@ export function BlogOperations({ blog, className }: BlogOperationsProps) {
 
                 toast({
                     title: "Hurray!",
-                    description: "Blog has been published"
+                    description: blog.published ? "Blog has been unpublished" : "Blog has been published"
                 });
 
                 router.refresh();
-            }).catch(() => {
+            }).catch((err) => {
                 setIsPublishLoading(false);
                 setShowPublishAlert(false);
 
                 toast({
                     title: "Oops!",
-                    description: "Blog was not published, try again later",
+                    description: blog.published ? "Error unpublishing the blog, try again later" : "Blog was not published, try again later",
                     variant: "destructive"
                 });
             });
@@ -112,7 +112,7 @@ export function BlogOperations({ blog, className }: BlogOperationsProps) {
                         className="flex cursor-pointer items-center"
                         onSelect={() => setShowPublishAlert(true)}
                     >
-                        Publish
+                        {blog.published ? "Unpublish" : "Publish"}
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem
@@ -149,10 +149,16 @@ export function BlogOperations({ blog, className }: BlogOperationsProps) {
                 <AlertDialogContent>
                     <AlertDialogHeader>
                         <AlertDialogTitle>
-                            Are you sure you want to publish this blog?
+                            {blog.published
+                                ? "Are you sure you want to unpublish this blog?"
+                                : "Are you sure you want to publish this blog?"
+                            }
                         </AlertDialogTitle>
                         <AlertDialogDescription>
-                            You still will be able to update this blog anytime you want.
+                            {blog.published
+                                ? "People will not be able to see this blog anymore."
+                                : "You still will be able to update this blog anytime you want."
+                            }
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
@@ -162,7 +168,7 @@ export function BlogOperations({ blog, className }: BlogOperationsProps) {
                                 ? <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                                 : <Icons.pencil className="mr-2 h-4 w-4" />
                             }
-                            <span>Publish it!</span>
+                            <span> {blog.published ? "Unpublish it!" : "Publish it!"}</span>
                         </AlertDialogAction>
                     </AlertDialogFooter>
                 </AlertDialogContent>
