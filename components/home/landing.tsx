@@ -63,7 +63,7 @@ function Landing({ className }: HTMLAttributes<HTMLElement>) {
                     variants={crossIn}
                 >
                     <motion.div
-                        className="flex flex-col gap-8 order-1 md:order-none"
+                        className="flex flex-col gap-4 md:gap-8 order-1 md:order-none"
                         initial="hide"
                         animate="show"
                         variants={crossIn}

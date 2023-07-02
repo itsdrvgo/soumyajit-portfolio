@@ -14,9 +14,8 @@ async function Page() {
                         <p className="text-4xl font-bold">Profile</p>
                         <p className="text-gray-400">Manage your profile from here</p>
                     </div>
-                    {/* <ProfileSkeleton /> */}
                     <Suspense fallback={
-                        <ProfileSkeleton />
+                        <ProfileSkeleton className="space-y-6" />
                     }>
                         <ProfilePage className="space-y-6" user={user!} />
                     </Suspense>

@@ -42,7 +42,7 @@ async function BlogViewPage({ className, params }: PageProps) {
     return (
         <>
             <div className="flex gap-4 flex-col w-full">
-                <p className="text-2xl md:text-5xl font-bold">{blog.title}</p>
+                <p className="text-2xl md:text-5xl font-bold md:leading-tight">{blog.title}</p>
                 <Separator className="w-full" />
                 <div className="flex gap-3 text-xs items-center md:text-sm">
                     <Avatar>
