@@ -31,7 +31,9 @@ interface PageProps extends HTMLAttributes<HTMLElement> {
 async function BlogViewPage({ className, params }: PageProps) {
     const { userId } = auth();
 
-    const blog = await getBlogForUser(Number(params.blogId), userId!);
+    const blog = await db.query.blogs.findFirst({
+        where: eq(blogs.id, Number(params.blogId)),
+    });
     if (!blog) notFound();
 
     const user = await db.query.users.findFirst({ where: eq(users.id, userId!) });
