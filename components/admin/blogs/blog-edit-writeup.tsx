@@ -190,7 +190,7 @@ function BlogWriteUp({ className, params, data, user }: PageProps) {
                         </p>
                     </div>
                 }
-                <div className="flex w-full items-center justify-end gap-2">
+                <div className="flex w-full items-center justify-center gap-2">
                     <Button
                         onClick={handleSave}
                     >
@@ -198,7 +198,12 @@ function BlogWriteUp({ className, params, data, user }: PageProps) {
                             ? <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                             : <Icons.document className="mr-2 h-4 w-4" />
                         }
-                        <span>Save as Draft</span>
+                        <span>
+                            {data.published
+                                ? "Save & Publish"
+                                : "Save as Draft"
+                            }
+                        </span>
                     </Button>
                 </div>
                 <Button

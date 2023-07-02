@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 
 interface PageProps extends HTMLAttributes<HTMLElement> { }
 
-async function AccountDeleteButton({ className }: PageProps) {
+function AccountDeleteButton({ className }: PageProps) {
     const { toast } = useToast();
     const router = useRouter();
 
