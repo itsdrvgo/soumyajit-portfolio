@@ -1,11 +1,12 @@
 "use client";
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { HTMLAttributes } from "react";
 import { User } from "@/lib/drizzle/schema";
 import { Icons } from "../icons/icons";
+import { useToast } from "../ui/use-toast";
 
 interface CompProps extends HTMLAttributes<HTMLElement> {
     user: User
@@ -13,6 +14,18 @@ interface CompProps extends HTMLAttributes<HTMLElement> {
 
 function DropdownProfile({ user, className }: CompProps) {
     const router = useRouter();
+    const pathname = usePathname();
+    const { toast } = useToast();
+
+    if ((!user.username || !user.username.length) && pathname !== "/profile") {
+        toast({
+            title: "Oops!",
+            description: "You must have a username in order to continue",
+            variant: "destructive"
+        });
+        router.push("/profile");
+    }
+
     const defaultUserName = "User";
 
     return (

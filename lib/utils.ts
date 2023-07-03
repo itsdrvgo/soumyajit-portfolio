@@ -54,23 +54,25 @@ export function handleError(err: unknown) {
     });
 }
 
-enum UserRole {
-    User = "user",
-    Moderator = "moderator",
-    Admin = "admin",
-    Owner = "owner",
-}
-
 export function checkRoleHierarchy(userRole: string, targetRole: string) {
-    const rolesHierarchy: UserRole[] = [
-        UserRole.User,
-        UserRole.Moderator,
-        UserRole.Admin,
-        UserRole.Owner,
-    ];
+    enum UserRole {
+        User = "user",
+        Moderator = "moderator",
+        Admin = "admin",
+        Owner = "owner",
+    }
 
-    const userRoleIndex = rolesHierarchy.indexOf(userRole as UserRole);
-    const targetRoleIndex = rolesHierarchy.indexOf(targetRole as UserRole);
-
-    return userRoleIndex > targetRoleIndex;
+    if (userRole === UserRole.Owner) return true;
+    else if (userRole === UserRole.Admin) return targetRole !== UserRole.Owner && targetRole !== UserRole.Admin;
+    else if (userRole === UserRole.Moderator) return (
+        targetRole !== UserRole.Owner &&
+        targetRole !== UserRole.Admin &&
+        targetRole !== UserRole.Moderator
+    );
+    else if (userRole === UserRole.User) return (
+        targetRole !== UserRole.Owner &&
+        targetRole !== UserRole.Admin &&
+        targetRole !== UserRole.Moderator
+    );
+    else return false;
 }

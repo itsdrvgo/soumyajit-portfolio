@@ -19,7 +19,7 @@ export async function DELETE(req: NextRequest, context: z.infer<typeof routeCont
 
         if (!(await verifyCurrentUserHasAccessToBlog(params.blogId))) return NextResponse.json({
             code: 403,
-            message: "Forbidden"
+            message: "Unauthorized"
         });
 
         await db.delete(blogs).where(eq(blogs.id, Number(params.blogId)));
@@ -38,7 +38,7 @@ export async function PATCH(req: NextRequest, context: z.infer<typeof routeConte
 
         if (!(await verifyCurrentUserHasAccessToBlog(params.blogId))) return NextResponse.json({
             code: 403,
-            message: "Forbidden"
+            message: "Unauthorized"
         });
 
         const json = await req.json();

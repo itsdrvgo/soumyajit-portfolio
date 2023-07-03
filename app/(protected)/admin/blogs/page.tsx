@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { Metadata } from "next";
 import BlogsPage from "@/components/admin/blogs/blogs-page";
 import { BlogCreateButton } from "@/components/admin/blogs/blog-create-button";
-import BlogsSkeleton from "@/components/skeletons/blogs-skeleton";
+import BlogEditSkeleton from "@/components/skeletons/blog-edit-skeleton";
 
 export const metadata: Metadata = {
     title: "Blogs Panel",
@@ -24,7 +24,7 @@ function Page() {
                     <Suspense fallback={
                         <div className="grid grid-cols-1 md:grid-cols-3 justify-items-stretch gap-5">
                             {Array.from({ length: 4 }, (_, index) => (
-                                <BlogsSkeleton key={index} />
+                                <BlogEditSkeleton key={index} />
                             ))}
                         </div>
                     }>
