@@ -83,7 +83,7 @@ export function BlogOperations({ blog, className }: BlogOperationsProps) {
                 });
 
                 router.refresh();
-            }).catch((err) => {
+            }).catch(() => {
                 setIsPublishLoading(false);
                 setShowPublishAlert(false);
 
