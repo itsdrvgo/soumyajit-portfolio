@@ -30,6 +30,11 @@ export async function POST(req: NextRequest) {
             message: "Target not found"
         });
 
+        if (dbUser.id === target.id) return NextResponse.json({
+            code: 403,
+            message: "You cannot update your own role"
+        });
+
         if (!checkRoleHierarchy(dbUser.role, target.role)) return NextResponse.json({
             code: 403,
             message: "You don't have permission to execute this action"
