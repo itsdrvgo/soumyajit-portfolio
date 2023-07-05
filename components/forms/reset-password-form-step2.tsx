@@ -50,8 +50,7 @@ function ResetPasswordStep2Form() {
                     });
                     router.push(`${window.location.origin}/`);
                     toast({
-                        title: "Hurray!",
-                        description: "Password reset successful."
+                        description: "Password reset successful"
                     });
                 } else {
                     console.error(attemptFirstFactor);

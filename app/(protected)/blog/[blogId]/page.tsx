@@ -1,18 +1,20 @@
 import { Suspense } from "react";
-import BlogViewPage, { getBlogForUser } from "@/components/blog/blog-view-page";
+import BlogViewPage from "@/components/blog/blog-view-page";
 import BlogViewSkeleton from "@/components/skeletons/blog-view-skeleton";
 import { env } from "@/env.mjs";
-import { auth } from "@clerk/nextjs";
 import { Metadata } from "next";
+import { blogs } from "@/lib/drizzle/schema";
+import { eq } from "drizzle-orm";
+import { db } from "@/lib/drizzle";
 
 interface PageProps {
     params: { blogId: string }
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-    const { userId } = auth();
-
-    const blog = await getBlogForUser(Number(params.blogId), userId!);
+    const blog = await db.query.blogs.findFirst({
+        where: eq(blogs.id, Number(params.blogId)),
+    });
     if (!blog) return {};
 
     const url = env.NEXT_PUBLIC_APP_URL;
@@ -43,7 +45,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
 }
 
-async function Page({ params }: PageProps) {
+function Page({ params }: PageProps) {
     return (
         <>
             <section className={"space-y-24 pb-8 pt-0 md:pt-10 mb-10 md:mb-20 container max-w-[65rem]"}>
