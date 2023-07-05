@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import { useToast } from "../ui/use-toast";
 import BlogViewComments from "./blog-view-comments";
 import { env } from "@/env.mjs";
+import { LikeUpdateData } from "@/lib/validation/blogs";
 
 interface PageProps extends HTMLAttributes<HTMLElement> {
     params: { blogId: string },
@@ -32,7 +33,6 @@ function BlogViewOperations({ className, params, blog, comments, likes, user, us
     const [isActive, setIsActive] = useState(false);
     const [isPosting, setIsPosting] = useState(false);
     const [isLiked, setIsLiked] = useState(like ? true : false);
-    const [isLiking, setIsLiking] = useState(false);
 
     useEffect(() => {
         if (comment.length) setIsActive(true);
@@ -40,28 +40,24 @@ function BlogViewOperations({ className, params, blog, comments, likes, user, us
     }, [comment.length]);
 
     const handleLike = () => {
-        setIsLiking(true);
+        setIsLiked(!isLiked);
 
-        const body: NewLike = {
+        const body: LikeUpdateData = {
             blogId: blog.id,
-            userId: user.id
+            userId: user.id,
+            isLiked
         };
 
         axios.post<ResponseData>("/api/blogs/likes", JSON.stringify(body))
             .then(({ data: resData }) => {
-                setIsLiking(false);
-
                 if (resData.code !== 200) return toast({
                     title: "Oops!",
                     description: resData.message,
                     variant: "destructive"
                 });
 
-                setIsLiked(!isLiked);
                 router.refresh();
             }).catch(() => {
-                setIsLiking(false);
-
                 toast({
                     title: "Oops!",
                     description: "Internal Server Error, try again later",
@@ -114,27 +110,16 @@ function BlogViewOperations({ className, params, blog, comments, likes, user, us
                     <button
                         className="flex gap-2 items-center justify-center"
                         onClick={handleLike}
-                        disabled={isLiking}
                     >
-                        {isLiking
+                        {isLiked
                             ? <>
-                                <Icons.spinner className="h-4 w-4 animate-spin" />
-                                Loading
+                                <Icons.heart className="h-4 w-4 fill-gray-400" />
+                                Liked
                             </>
-                            : isLiked
-                                ? (
-                                    <>
-                                        <Icons.heart className="h-4 w-4 fill-gray-400" />
-                                        Liked
-                                    </>
-                                )
-                                : (
-                                    <>
-                                        <Icons.heart className="h-4 w-4" />
-                                        Like
-                                    </>
-                                )
-
+                            : <>
+                                <Icons.heart className="h-4 w-4" />
+                                Like
+                            </>
                         }
                     </button>
                     <button
