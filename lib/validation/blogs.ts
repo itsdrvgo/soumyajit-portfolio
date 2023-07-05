@@ -21,6 +21,12 @@ export const publishSchema = z.object({
     published: z.boolean().default(false)
 });
 
+export const likeUpdateSchema = z.object({
+    blogId: z.number(),
+    userId: z.string(),
+    isLiked: z.boolean()
+});
+
 export const viewUpdateSchema = z.object({
     blogId: z.number()
 });
@@ -28,4 +34,5 @@ export const viewUpdateSchema = z.object({
 export type BlogCreateData = z.infer<typeof blogCreateSchema>;
 export type BlogPatchData = z.infer<typeof postPatchSchema>;
 export type BlogPublishData = z.infer<typeof publishSchema>;
+export type LikeUpdateData = z.infer<typeof likeUpdateSchema>;
 export type ViewUpdateData = z.infer<typeof viewUpdateSchema>;

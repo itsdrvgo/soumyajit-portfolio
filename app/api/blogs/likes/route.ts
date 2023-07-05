@@ -1,6 +1,7 @@
 import { db } from "@/lib/drizzle";
-import { blogs, insertLikeSchema, likes, users } from "@/lib/drizzle/schema";
+import { blogs, likes, users } from "@/lib/drizzle/schema";
 import { handleError } from "@/lib/utils";
+import { likeUpdateSchema } from "@/lib/validation/blogs";
 import { currentUser } from "@clerk/nextjs";
 import { and, eq, sql } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
@@ -9,7 +10,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
 
     try {
-        const data = insertLikeSchema.parse(body);
+        const data = likeUpdateSchema.parse(body);
 
         const user = await currentUser();
         if (!user) return NextResponse.json({
@@ -23,11 +24,7 @@ export async function POST(req: NextRequest) {
             message: "Unauthorized"
         });
 
-        const isLiked = await db.query.likes.findFirst({
-            where: and(eq(likes.blogId, data.blogId), eq(likes.userId, data.userId))
-        });
-
-        if (isLiked) {
+        if (data.isLiked) {
             await db.delete(likes).where(eq(likes.blogId, data.blogId));
 
             await db.update(blogs).set({

@@ -107,7 +107,6 @@ async function BlogViewPage({ className, params }: PageProps) {
                     </Mdx>
                 </div>
 
-                {/* <Separator className="w-full" /> */}
                 <div className="w-full flex justify-between items-center cursor-default text-sm p-5 py-3 rounded-md bg-zinc-900">
                     <div>
                         <p>{shortenNumber(blog.likes)} Likes</p>
