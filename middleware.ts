@@ -27,50 +27,46 @@ export default authMiddleware({
         "/signin(.*)",
         "/signup(.*)",
         "/sso-callback(.*)",
-        "/api(.*)"
     ],
-    beforeAuth(req, evt) {
-        if (req.nextUrl.pathname === "/") return NextResponse.next();
-    },
     async afterAuth(auth, req, evt) {
-        if (auth.isPublicRoute) {
-            if (req.nextUrl.pathname.startsWith("/api")) {
-                if (req.nextUrl.pathname === "/api/blogs/views") {
-                    const reqIp = req.ip ?? "127.0.0.1";
+        if (auth.isPublicRoute) return NextResponse.next();
 
-                    const { success, pending, limit, reset, remaining } = await viewsRateLimiter.limit(reqIp);
-                    evt.waitUntil(pending);
+        if (req.nextUrl.pathname.startsWith("/api")) {
+            if (req.nextUrl.pathname === "/api/blogs/views") {
+                const reqIp = req.ip ?? "127.0.0.1";
 
-                    const res = success
-                        ? NextResponse.next()
-                        : NextResponse.json({
-                            code: 429,
-                            message: "Too many view requests"
-                        });
+                const { success, pending, limit, reset, remaining } = await viewsRateLimiter.limit(reqIp);
+                evt.waitUntil(pending);
 
-                    res.headers.set("X-RateLimit-Limit", limit.toString());
-                    res.headers.set("X-RateLimit-Remaining", remaining.toString());
-                    res.headers.set("X-RateLimit-Reset", reset.toString());
-                    return res;
-                } else {
-                    const reqIp = req.ip ?? "127.0.0.1";
+                const res = success
+                    ? NextResponse.next()
+                    : NextResponse.json({
+                        code: 429,
+                        message: "Too many view requests"
+                    });
 
-                    const { success, pending, limit, reset, remaining } = await globalRateLimiter.limit(reqIp);
-                    evt.waitUntil(pending);
+                res.headers.set("X-RateLimit-Limit", limit.toString());
+                res.headers.set("X-RateLimit-Remaining", remaining.toString());
+                res.headers.set("X-RateLimit-Reset", reset.toString());
+                return res;
+            } else {
+                const reqIp = req.ip ?? "127.0.0.1";
 
-                    const res = success
-                        ? NextResponse.next()
-                        : NextResponse.json({
-                            code: 429,
-                            message: "Too many requests, go slow"
-                        });
+                const { success, pending, limit, reset, remaining } = await globalRateLimiter.limit(reqIp);
+                evt.waitUntil(pending);
 
-                    res.headers.set("X-RateLimit-Limit", limit.toString());
-                    res.headers.set("X-RateLimit-Remaining", remaining.toString());
-                    res.headers.set("X-RateLimit-Reset", reset.toString());
-                    return res;
-                }
-            } else return NextResponse.next();
+                const res = success
+                    ? NextResponse.next()
+                    : NextResponse.json({
+                        code: 429,
+                        message: "Too many requests, go slow"
+                    });
+
+                res.headers.set("X-RateLimit-Limit", limit.toString());
+                res.headers.set("X-RateLimit-Remaining", remaining.toString());
+                res.headers.set("X-RateLimit-Reset", reset.toString());
+                return res;
+            }
         }
 
         const url = new URL(req.nextUrl.origin);
