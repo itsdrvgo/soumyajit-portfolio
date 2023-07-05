@@ -34,7 +34,6 @@ function UserOperation({ rowData }: PageProps) {
                 });
 
                 toast({
-                    title: "Hurray!",
                     description: "User has been deleted"
                 });
 
@@ -64,7 +63,6 @@ function UserOperation({ rowData }: PageProps) {
                 });
 
                 toast({
-                    title: "Hurray!",
                     description: "User role has been updated"
                 });
 

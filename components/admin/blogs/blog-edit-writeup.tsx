@@ -65,8 +65,7 @@ function BlogWriteUp({ className, params, data, user }: PageProps) {
                 });
 
                 toast({
-                    title: "Hurray!",
-                    description: "Blog has been saved",
+                    description: "Blog has been saved"
                 });
 
                 router.push("/admin/blogs");
@@ -160,7 +159,6 @@ function BlogWriteUp({ className, params, data, user }: PageProps) {
 
                                         setThumbnailURL(res[0].fileUrl);
                                         toast({
-                                            title: "Hurray!",
                                             description: "Upload complete"
                                         });
                                     }}

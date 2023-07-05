@@ -19,7 +19,6 @@ function DropdownProfile({ user, className }: CompProps) {
 
     if ((!user.username || !user.username.length) && pathname !== "/profile") {
         toast({
-            title: "Oops!",
             description: "You must have a username in order to continue",
             variant: "destructive"
         });

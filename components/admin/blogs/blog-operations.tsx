@@ -40,7 +40,6 @@ export function BlogOperations({ blog, className }: BlogOperationsProps) {
                 });
 
                 toast({
-                    title: "Hurray!",
                     description: "Blog has been deleted"
                 });
 
@@ -78,7 +77,6 @@ export function BlogOperations({ blog, className }: BlogOperationsProps) {
                 });
 
                 toast({
-                    title: "Hurray!",
                     description: blog.published ? "Blog has been unpublished" : "Blog has been published"
                 });
 

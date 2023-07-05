@@ -26,8 +26,7 @@ function AccountDeleteButton({ className }: PageProps) {
                 await user?.delete();
 
                 toast({
-                    title: "Hurray!",
-                    description: "Account deletion successful",
+                    description: "Account deletion successful"
                 });
                 router.refresh();
                 router.push("/");

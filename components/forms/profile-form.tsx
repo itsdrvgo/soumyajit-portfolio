@@ -44,13 +44,12 @@ function ProfileForm({ data }: PageProps) {
 
                 if (result) {
                     toast({
-                        title: "Hurray!",
-                        description: "Username change successful",
+                        description: "Your username has been changed"
                     });
                     router.refresh();
                 } else {
                     toast({
-                        title: "Hurray!",
+                        title: "Oops!",
                         description: "Something went wrong, please try again.",
                     });
                 }

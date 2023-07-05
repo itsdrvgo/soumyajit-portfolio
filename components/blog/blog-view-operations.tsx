@@ -92,8 +92,7 @@ function BlogViewOperations({ className, params, blog, comments, likes, user, us
 
                 setComment("");
                 toast({
-                    title: "Hurray!",
-                    description: "Your comment has been published"
+                    description: "Comment published"
                 });
 
                 router.refresh();
