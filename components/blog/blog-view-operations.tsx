@@ -144,14 +144,14 @@ function BlogViewOperations({ className, params, blog, comments, likes, user, us
                 </div>
                 <Separator />
                 <div className="w-full space-y-6 pt-5">
-                    <p className="font-semibold text-3xl">Comments</p>
+                    <p className="font-semibold text-2xl md:text-3xl">Comments</p>
                     <div className="flex gap-4">
-                        <Avatar>
+                        <Avatar className="h-8 w-8 md:w-10 md:h-10">
                             <AvatarImage src={user.profile_image_url!} alt={user.username ?? "User"} />
                             <AvatarFallback>{(user.username ?? "User").charAt(0).toUpperCase()}</AvatarFallback>
                         </Avatar>
                         <div className="w-full space-y-2">
-                            <p className="cursor-default">@{user.username}</p>
+                            <p className="cursor-default text-sm md:text-base">@{user.username}</p>
                             <TextareaAutosize
                                 id="comment"
                                 disabled={isPosting}
