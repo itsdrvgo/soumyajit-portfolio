@@ -29,6 +29,9 @@ export default authMiddleware({
         "/sso-callback(.*)",
         "/api(.*)"
     ],
+    beforeAuth(req, evt) {
+        if (req.nextUrl.pathname === "/") return NextResponse.next();
+    },
     async afterAuth(auth, req, evt) {
         if (auth.isPublicRoute) {
             if (req.nextUrl.pathname.startsWith("/api")) {
