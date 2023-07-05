@@ -9,12 +9,12 @@ import BlogSearch from "./blog-search";
 interface PageProps extends HTMLAttributes<HTMLElement> { }
 
 async function BlogsPage({ className }: PageProps) {
-    const data = await db.select().from(blogs).where(eq(blogs.published, true));
+    const blogData = await db.select().from(blogs).where(eq(blogs.published, true));
 
     return (
         <>
-            {data.length
-                ? <BlogSearch data={data} />
+            {blogData.length
+                ? <BlogSearch blogData={blogData} />
                 : <EmptyPlaceholder>
                     <EmptyPlaceholder.Icon name="document" />
                     <EmptyPlaceholder.Title>No blogs created</EmptyPlaceholder.Title>

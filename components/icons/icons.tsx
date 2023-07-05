@@ -77,7 +77,11 @@ import {
     LogOut,
     List,
     Construction,
-    Globe
+    Globe,
+    Heart,
+    MessageSquare,
+    BarChart,
+    Share2
 } from "lucide-react";
 
 export type Icon = LucideIcon
@@ -162,6 +166,10 @@ export const Icons = {
     construction: Construction,
     document: FileText,
     globe: Globe,
+    heart: Heart,
+    comment: MessageSquare,
+    analytics: BarChart,
+    share: Share2,
     discord: ({ ...props }: LucideProps) => (
 
         < svg

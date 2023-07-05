@@ -21,6 +21,11 @@ export const publishSchema = z.object({
     published: z.boolean().default(false)
 });
 
+export const viewUpdateSchema = z.object({
+    blogId: z.number()
+});
+
 export type BlogCreateData = z.infer<typeof blogCreateSchema>;
 export type BlogPatchData = z.infer<typeof postPatchSchema>;
 export type BlogPublishData = z.infer<typeof publishSchema>;
+export type ViewUpdateData = z.infer<typeof viewUpdateSchema>;

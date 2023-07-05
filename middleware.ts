@@ -5,9 +5,17 @@ import { Redis } from "@upstash/redis";
 
 const cache = new Map();
 
-const ratelimit = new Ratelimit({
+const globalRateLimiter = new Ratelimit({
     redis: Redis.fromEnv(),
     limiter: Ratelimit.fixedWindow(20, "60s"),
+    ephemeralCache: cache,
+    analytics: true,
+    timeout: 1000
+});
+
+const viewsRateLimiter = new Ratelimit({
+    redis: Redis.fromEnv(),
+    limiter: Ratelimit.fixedWindow(5, "60s"),
     ephemeralCache: cache,
     analytics: true,
     timeout: 1000
@@ -24,24 +32,41 @@ export default authMiddleware({
     async afterAuth(auth, req, evt) {
         if (auth.isPublicRoute) {
             if (req.nextUrl.pathname.startsWith("/api")) {
-                console.log("2");
-                const reqIp = req.ip ?? "127.0.0.1";
+                if (req.nextUrl.pathname === "/api/blogs/views") {
+                    const reqIp = req.ip ?? "127.0.0.1";
 
-                const { success, pending, limit, reset, remaining } = await ratelimit.limit(reqIp);
-                evt.waitUntil(pending);
+                    const { success, pending, limit, reset, remaining } = await viewsRateLimiter.limit(reqIp);
+                    evt.waitUntil(pending);
 
-                const res = success
-                    ? NextResponse.next()
-                    : NextResponse.json({
-                        code: 429,
-                        message: "Too many requests, go slow"
-                    });
+                    const res = success
+                        ? NextResponse.next()
+                        : NextResponse.json({
+                            code: 429,
+                            message: "Too many view requests"
+                        });
 
-                res.headers.set("X-RateLimit-Limit", limit.toString());
-                res.headers.set("X-RateLimit-Remaining", remaining.toString());
-                res.headers.set("X-RateLimit-Reset", reset.toString());
-                console.log("3", success);
-                return res;
+                    res.headers.set("X-RateLimit-Limit", limit.toString());
+                    res.headers.set("X-RateLimit-Remaining", remaining.toString());
+                    res.headers.set("X-RateLimit-Reset", reset.toString());
+                    return res;
+                } else {
+                    const reqIp = req.ip ?? "127.0.0.1";
+
+                    const { success, pending, limit, reset, remaining } = await globalRateLimiter.limit(reqIp);
+                    evt.waitUntil(pending);
+
+                    const res = success
+                        ? NextResponse.next()
+                        : NextResponse.json({
+                            code: 429,
+                            message: "Too many requests, go slow"
+                        });
+
+                    res.headers.set("X-RateLimit-Limit", limit.toString());
+                    res.headers.set("X-RateLimit-Remaining", remaining.toString());
+                    res.headers.set("X-RateLimit-Reset", reset.toString());
+                    return res;
+                }
             } else return NextResponse.next();
         }
 

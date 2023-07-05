@@ -66,7 +66,7 @@ function BlogWriteUp({ className, params, data, user }: PageProps) {
 
                 toast({
                     title: "Hurray!",
-                    description: "Blog has been saved as draft",
+                    description: "Blog has been saved",
                 });
 
                 router.push("/admin/blogs");
