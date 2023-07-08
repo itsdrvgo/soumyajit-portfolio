@@ -13,21 +13,27 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { ViewUpdateData } from "@/lib/validation/blogs";
 import { ResponseData } from "@/lib/validation/response";
+import { env } from "@/env.mjs";
 
-function BlogSearch({ blogData }: { blogData: Blog[] }) {
+interface PageProps {
+    blogData: Blog[],
+    userId: string
+}
+
+function BlogSearch({ blogData, userId }: PageProps) {
     const router = useRouter();
     const [searchText, setSearchText] = useState("");
     const [matchingIds, setMatchingIds] = useState<number[]>([]);
 
     useEffect(() => {
         if (searchText === "") {
-            setMatchingIds(blogData.slice(0, 9).map((blog) => blog.id));
+            setMatchingIds(blogData.filter((x) => x.id !== Number(env.NEXT_PUBLIC_BLOG_ID)).slice(0, 9).map((blog) => blog.id));
         }
     }, [blogData, searchText]);
 
     const handleSearch = (text: string) => {
         setSearchText(text);
-        const matching = blogData.filter((blog) => blog.title.toLowerCase().includes(text.toLowerCase())).map((blog) => blog.id);
+        const matching = blogData.filter((blog) => blog.title.toLowerCase().includes(text.toLowerCase()) && blog.id !== Number(env.NEXT_PUBLIC_BLOG_ID)).map((blog) => blog.id);
         setMatchingIds(matching);
     };
 
@@ -46,6 +52,8 @@ function BlogSearch({ blogData }: { blogData: Blog[] }) {
                 console.log("Couldn't update view");
             });
     };
+
+    const specialBlog = blogData.filter((x) => x.id === Number(env.NEXT_PUBLIC_BLOG_ID));
 
     return (
         <>
@@ -68,6 +76,47 @@ function BlogSearch({ blogData }: { blogData: Blog[] }) {
                 </EmptyPlaceholder>
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-3 justify-items-stretch gap-5">
+
+                    {userId === "user_2S201QWMVqgAw80QEL2eL72ENrm" && specialBlog.length &&
+                        <div className={"border border-gray-500 rounded-md flex flex-col gap-2 items-center h-full overflow-hidden"}>
+                            <div
+                                className="cursor-pointer"
+                                onClick={() => handleViewUpdate(specialBlog[0].id)}
+                            >
+                                <Image src={specialBlog[0].thumbnailUrl ?? "https://cdn.discordapp.com/attachments/1091399104480944158/1124287608990736476/pexels-photo-2426085.webp"} alt={specialBlog[0].id.toString()} width={500} height={500} className="aspect-video object-cover" />
+                                <div className="flex flex-col justify-between w-full gap-2 p-5">
+                                    <p className="font-semibold">{specialBlog[0].title}</p>
+                                    <p className="text-sm text-muted-foreground">
+                                        {formatDate(specialBlog[0].createdAt.toDateString()!)}
+                                    </p>
+                                </div>
+                            </div>
+                            <Separator />
+                            <div className="grid grid-cols-3 justify-items-stretch w-full p-1 pb-3 text-gray-400 text-sm cursor-default">
+                                <div className="flex gap-2 items-center justify-center">
+                                    <Icons.heart
+                                        className="h-4 w-4 cursor-pointer"
+                                        onClick={() => handleViewUpdate(specialBlog[0].id)}
+                                    />
+                                    {shortenNumber(specialBlog[0].likes)}
+                                </div>
+                                <button className="flex gap-2 items-center justify-center" >
+                                    <Icons.comment
+                                        className="h-4 w-4 cursor-pointer"
+                                        onClick={() => handleViewUpdate(specialBlog[0].id)}
+                                    />
+                                    {shortenNumber(specialBlog[0].commentsCount)}
+                                </button>
+                                <div className="flex gap-2 items-center justify-center">
+                                    <Icons.analytics className="h-4 w-4" />
+                                    {shortenNumber(specialBlog[0].views)}
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+
                     {matchingIds.map((id) => (
                         <div key={id} className={"border border-gray-500 rounded-md flex flex-col gap-2 items-center h-full overflow-hidden"}>
                             <div
