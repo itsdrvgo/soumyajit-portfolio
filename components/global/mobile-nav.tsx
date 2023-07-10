@@ -31,11 +31,15 @@ function MobileNav({ items, children }: MobileNavProps) {
                             key={index}
                             href={item.disabled ? "#" : item.href}
                             className={cn(
-                                "flex w-full items-center rounded-md p-2 text-sm font-medium hover:underline",
+                                "flex w-full gap-1 items-center rounded-md p-2 text-sm font-medium hover:underline",
                                 item.disabled && "cursor-not-allowed opacity-60"
                             )}
                         >
-                            {item.title}
+                            <p>{item.title}</p>
+                            {item.title === "Blog"
+                                ? <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
+                                : null
+                            }
                         </Link>
                     ))}
                 </nav>

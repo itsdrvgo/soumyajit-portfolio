@@ -32,14 +32,18 @@ function MainNav({ items, children, className }: MainNavProps) {
                             key={index}
                             href={item.disabled ? "#" : item.href}
                             className={cn(
-                                "flex items-center text-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm",
+                                "flex items-center gap-1 text-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm relative",
                                 item.href.startsWith(`/${segment}`)
                                     ? "text-foreground"
                                     : "text-foreground/60",
                                 item.disabled && "cursor-not-allowed opacity-80"
                             )}
                         >
-                            {item.title}
+                            <p>{item.title}</p>
+                            {item.title === "Blog"
+                                ? <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
+                                : null
+                            }
                         </Link>
                     ))}
                 </nav>
