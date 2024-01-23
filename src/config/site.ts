@@ -4,7 +4,7 @@ export const siteConfig: SiteConfig = {
     name: "Soumyajit Chakraborty",
     description:
         "A personal portfolio website of Soumyajit Chakraborty, a singer, songwriter, and music composer from Kolkata, India.",
-    url: "https://soumyajit-chakraborty.vercel.app/",
+    url: "https://iamsoumyajit.vercel.app/",
     ogImage: "/og.webp",
     keywords: [
         "soumyajit chakraborty",
