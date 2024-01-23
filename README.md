@@ -1,33 +1,81 @@
-# **Soumyajit Website (Next.JS 13 Project)**
+# **Soumyajit Chakraborty - Portfolio**
 
-This project include the following features,
-* **Database Management** with [`Drizzle ORM`](https://orm.drizzle.team/) and [`Planelscale`](https://planetscale.com/).
-* **Authntication** with [`Clerk`](https://clerk.com/).
-* **Data Validation** with [`Zod`](https://zod.dev/).
-* **Data Caching** with [`ioredis`](https://github.com/redis/ioredis) and [`Upstash`](https://upstash.com/).
-* **UI Library Management** with [`ShadCN UI`](https://ui.shadcn.com/).
-* **Environment Management** with [`T3 ENV`](https://env.t3.gg/docs/introduction).
-* **Icon Management** with [`Lucide`](https://lucide.dev/).
-* **CSS Management** with [`Tailwind CSS`](https://tailwindcss.com/).
-* **Package Manager** as [`pnpm`](https://pnpm.io/).
+A personal portfolio website of Soumyajit Chakraborty, a singer, songwriter, and music composer from Kolkata, India.
 
-## **Message from the Creator**
----
-Hey, **DRVGO** here. All the needed documentations are hyper-linked with the package names. This was a side project of mine, and I'm publishing it publicly, so that people can understand and learn complex concepts of react, auth and data fetching-caching.
+![Soumyajit Chakraborty](./public/og.webp)
 
-If you find any bug, feel free to post an issue and if you know the fix for it, feel free to fork it and create a pull request. We'll verifiy it, and merge it.
+## Who is Soumyajit Chakraborty?
 
-If you like this project, kindly give it a star.
+Soumyajit Chakraborty is a singer, songwriter, and music composer from Kolkata, India. He is a versatile singer who has sung in various languages including Bengali, Hindi and English. He has been a part of the music industry for more than 5 years and has worked with some of the biggest names in the industry.
 
-## **How to Run the Application**
----
-1. Clone the project in your local system.
-2. Open the terminal and install using `pnpm i` (if you're using npm, you might wanna migrate the package manager).
-3. Once all the packages are installed, run `pnpm dev` (if you're on development mode). To make a production build, first use `pnpm build`, and then `pnpm start`.
-4. The application will be hosted locally on `http://localhost:3000`.
-5. To install UI components, make sure you read the [guide](https://ui.shadcn.com/).
+This is a personal portfolio website of Soumyajit Chakraborty. It is built using [Next.js](https://nextjs.org/) and [Tailwind CSS](https://tailwindcss.com/).
 
-## **SOCIALS**
----
+## Getting Started
 
-[![Discord](https://img.shields.io/badge/Discord-%237289DA.svg?logo=discord&logoColor=white)](https://dsc.gg/drvgo) [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/itsdrvgo) [![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?logo=Twitter&logoColor=white)](https://twitter.com/itsdrvgo) [![YouTube](https://img.shields.io/badge/YouTube-%23FF0000.svg?logo=YouTube&logoColor=white)](https://youtube.com/@itsdrvgo) 
+-   First, clone the repository:
+
+    ```bash
+    git clone https://github.com/itsdrvgo/soumyajit-portfolio
+    ```
+
+-   Install the dependencies:
+
+    ```bash
+    npm install
+    # or
+    yarn install
+    # or
+    pnpm install
+    ```
+
+-   Run the development server:
+
+    ```bash
+    npm run dev
+    # or
+    yarn dev
+    # or
+    pnpm dev
+    ```
+
+-   Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+-   You can start editing the page by modifying [`page.tsx`](<./src/app/(home)/page.tsx>). The page auto-updates as you edit the file.
+-   Build the app for production:
+
+    ```bash
+    npm run build
+    # or
+    yarn build
+    # or
+    pnpm build
+    ```
+
+-   Run the production build:
+
+    ```bash
+    npm run start
+    # or
+    yarn start
+    # or
+    pnpm start
+    ```
+
+## License
+
+This project is licensed under the [MIT License](./LICENSE). Feel free to use it however you like.
+
+## Follow Soumyajit
+
+[![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/iamsoumyajit_09)
+[![YouTube](https://img.shields.io/badge/YouTube-%23FF0000.svg?logo=YouTube&logoColor=white)](https://youtube.com/@soumyajitchakrabortyofficial)
+[![Facebook](https://img.shields.io/badge/Facebook-%231877F2.svg?logo=Facebook&logoColor=white)](https://facebook.com/soumyajit.chakraborty.796)
+
+## Credits
+
+This project is created and maintained by [DRVGO](https://itsdrvgo.me).
+
+[![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/itsdrvgo)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/itsdrvgo)
+[![Twitch](https://img.shields.io/badge/Twitch-%239146FF.svg?logo=Twitch&logoColor=white)](https://twitch.tv/itsdrvgo)
+[![X](https://img.shields.io/badge/X-%23000000.svg?logo=X&logoColor=white)](https://x.com/itsdrvgo)
+[![YouTube](https://img.shields.io/badge/YouTube-%23FF0000.svg?logo=YouTube&logoColor=white)](https://youtube.com/@itsdrvgodev)
