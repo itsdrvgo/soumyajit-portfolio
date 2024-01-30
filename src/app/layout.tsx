@@ -14,7 +14,7 @@ const font = Poppins({
 export const metadata: Metadata = {
     title: {
         default: siteConfig.name,
-        template: `${siteConfig.name} | %s`,
+        template: "%s | " + siteConfig.name,
     },
     description: siteConfig.description,
     keywords: siteConfig.keywords,
