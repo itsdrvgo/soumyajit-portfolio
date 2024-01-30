@@ -23,13 +23,14 @@ function Footer({
                 <p className="text-sm">
                     © {new Date().getFullYear()}{" "}
                     <Link
-                        href={"/"}
+                        href="https://itsdrvgo.me/"
                         underline="always"
                         className="text-sm font-semibold text-primary-700"
+                        isExternal
                     >
-                        Soumyajit Chakraborty.
-                    </Link>{" "}
-                    All rights reserved.
+                        DRVGO
+                    </Link>
+                    . All rights reserved.
                 </p>
             </div>
         </footer>
