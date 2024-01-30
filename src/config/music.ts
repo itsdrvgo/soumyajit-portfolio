@@ -1,4 +1,4 @@
-interface Music {
+export interface Music {
     name: string;
     url: string;
     thumbnail: string;
