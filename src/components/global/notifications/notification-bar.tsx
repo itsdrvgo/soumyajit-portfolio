@@ -85,6 +85,7 @@ function NotificationBar({ topic, className, ...props }: NotificationBarProps) {
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 shouldBlockScroll
+                placement="top-end"
             >
                 <PopoverTrigger>
                     <Button
