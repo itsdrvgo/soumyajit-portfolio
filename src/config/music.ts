@@ -7,6 +7,20 @@ export interface Music {
 
 export const music: Music[] = [
     {
+        name: "Nesha",
+        url: "https://open.spotify.com/track/3trLBTV9ji7A69cnYPUXMs?si=c11a782ef7a94cd7",
+        alt: "nesha",
+        thumbnail:
+            "https://i.scdn.co/image/ab67616d0000b273aa38791988e4348fff21aaa9",
+    },
+    {
+        name: "Valentine",
+        url: "https://open.spotify.com/track/7foPOiyQ8RLDwCIojvameq?si=eda8e7a1ee584501",
+        alt: "valentine",
+        thumbnail:
+            "https://i.scdn.co/image/ab67616d0000b27310cb64e8a39c54db382a3736",
+    },
+    {
         name: "Aaj Na Hoy",
         url: "https://open.spotify.com/track/2KfMgCktlWZm3ULV1Ga6pa?si=f0529565e60d4c9d",
         alt: "aaj_na_hoy",

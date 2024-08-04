@@ -1,11 +1,11 @@
 "use client";
 
 import sopne_ba_bastobe from "@/public/sopne_ba_bastobe.png";
-import { Music, music } from "@/src/config/music";
+import { music, type Music } from "@/src/config/music";
 import { cn } from "@/src/lib/utils";
 import { DefaultProps } from "@/src/types";
 import { Divider, Link } from "@nextui-org/react";
-import { HTMLMotionProps, Variants, motion } from "framer-motion";
+import { HTMLMotionProps, motion, Variants } from "framer-motion";
 import Image from "next/image";
 import { Icons } from "../icons/icons";
 import SpotifyEmbed from "../ui/spotify-embed";
@@ -63,14 +63,17 @@ function Music({ className, ...props }: DefaultProps) {
                     className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-6"
                     variants={slideUp}
                 >
-                    {music.slice(5, 6).map((item, index) => (
+                    {music.slice(0, 1).map((item, index) => (
                         <MusicCard song={item} key={index} />
                     ))}
 
                     <div className="grid grid-cols-2 gap-3 md:gap-6">
-                        {music.slice(2, 5).map((item, index) => (
-                            <MusicCard song={item} key={index} />
-                        ))}
+                        {music
+                            .filter((item) => item.alt !== "aaj_na_hoy")
+                            .slice(2, 5)
+                            .map((item, index) => (
+                                <MusicCard song={item} key={index} />
+                            ))}
 
                         <MoreMusicCard song={music[1]} />
                     </div>
@@ -114,8 +117,8 @@ function MusicCard({ song, className, ...props }: MusicCardProps) {
                 <Image
                     src={
                         song.alt === "swapne_ba_bastobe"
-                        ? sopne_ba_bastobe
-                        : song.thumbnail
+                            ? sopne_ba_bastobe
+                            : song.thumbnail
                     }
                     alt={song.alt}
                     width={400}

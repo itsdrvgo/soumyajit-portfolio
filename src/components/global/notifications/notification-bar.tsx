@@ -17,6 +17,7 @@ import { useAnimate } from "framer-motion";
 import { ReactNode, useEffect } from "react";
 import { Icons } from "../../icons/icons";
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
+import { videos } from "@/src/config/videos";
 import YouTubeEmbed from "react-lite-youtube-embed";
 
 interface NotificationBarProps extends DefaultProps {
@@ -155,7 +156,7 @@ function NotificationBar({ topic, className, ...props }: NotificationBarProps) {
                                         My new single is out now on YouTube.
                                         Check it out{" "}
                                         <Link
-                                            href="https://www.youtube.com/watch?v=TzwGJCT--G0"
+                                            href={`https://www.youtube.com/watch?v=${videos[0].id}`}
                                             underline="always"
                                             color="foreground"
                                             className="text-sm underline-offset-2"
@@ -171,8 +172,8 @@ function NotificationBar({ topic, className, ...props }: NotificationBarProps) {
                                         id="third"
                                     >
                                         <YouTubeEmbed
-                                            id="TzwGJCT--G0"
-                                            title="Valentine | Soumyajit Chakraborty | Upasana Saha | Debangajyoti Sen | Valentine's Day Song 2024"
+                                            id={videos[0].id}
+                                            title={videos[0].title}
                                         />
                                     </div>
                                 </div>
